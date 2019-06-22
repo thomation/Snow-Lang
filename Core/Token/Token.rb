@@ -4,6 +4,6 @@ class Token
         @value = value
     end
     def test
-        puts "#{@line_no}\t\t$#{@value}$" 
+        puts "#{@line_no}\t#{self.class}\t$#{@value}$" 
     end
 end

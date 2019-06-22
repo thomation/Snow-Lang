@@ -1,0 +1,3 @@
+class ErrToken < Token
+    
+end

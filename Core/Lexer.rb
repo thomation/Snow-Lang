@@ -10,11 +10,18 @@ class Lexer
     end
     def find_tokens(line_no, line)
         #puts "#{line_no} : #{line}"
-        words = line.split()
+
+        line = remove_endline(line)
+        words = line.split(/(==)|(=)|(\+)|(-)|(\*)|(\/)|(\()|(\))|(>)|(<)|[ ]+/)
         words.each{ |word|
+            word = word.strip
             #puts "$#{word}$"
-            @tokens << TokenFactory.create(line_no, word)
+            @tokens << TokenFactory.create(line_no, word) unless word.empty?
         }
+    end
+    def remove_endline(line)
+        captures = /^(.*)$/.match(line).captures
+        return captures[0]
     end
     def test
         @tokens.each{ |token|
