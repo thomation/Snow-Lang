@@ -1,0 +1,2 @@
+class IdToken < Token
+end

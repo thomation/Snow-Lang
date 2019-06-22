@@ -1,0 +1,2 @@
+class NumToken < Token
+end
