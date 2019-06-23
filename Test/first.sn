@@ -1,16 +1,20 @@
+
+a = 1.5 / (1.0 - .2)
+b = -1.8
+c = a * b
+
 sum = 0
 i = 1
-a = 1.5 / (1.0 - .2)
 
-while i< 10
-    if i>2 or i==0
+while i<= 10 {
+    if i>=2 or not i==0 {
         puts "s"
-    elseif i>3 and i < 5
+    } elseif i>3 and i < 5 {
         puts "m"
-    else
+    }else{
         puts "l"
-    end
+    }
     sum = sum + 1
 
     i = i+1
-end
+}

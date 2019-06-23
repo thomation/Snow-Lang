@@ -15,9 +15,9 @@ class TokenFactory
             return NumToken.new(line_no, value)
         elsif value =~ /^(if|else|elseif|while)$/
             return KeyToken.new(line_no, value)
-        elsif value =~ /^(begin|end)$/
+        elsif value =~ /^({|})$/
             return BlockToken.new(line_no, value)
-        elsif value =~ /^(==|=|\+|-|\*|\/|>|<|and|or)$/
+        elsif value =~ /^(==|>=|<=|=|\+|-|\*|\/|<|>|and|or)$/
             return OpToken.new(line_no, value)
         else
             return IdToken.new(line_no, value)
