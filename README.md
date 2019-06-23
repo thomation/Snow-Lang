@@ -1,7 +1,6 @@
 # Snow-Lang
-A simple script
 
-1. Token
+## Token
 
 KEY:     /^(if|else|elseif|while)$/
 
