@@ -1,0 +1,2 @@
+class BlockToken < Token
+end
