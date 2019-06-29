@@ -1,5 +1,5 @@
 class AstNode
-    def  AstTree child(int i)
+    def AstNode child(int i)
     end
     def numChildren
     end
