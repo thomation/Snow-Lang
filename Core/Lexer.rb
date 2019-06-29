@@ -33,6 +33,9 @@ class Lexer
     def next
         @current_index += 1
     end
+    def length
+        return @tokens.length
+    end
     def test
         @tokens.each{ |token|
             token.test

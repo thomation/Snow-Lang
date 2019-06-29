@@ -7,4 +7,8 @@ class ASTBranch < ASTNode
     def child(index)
         return @nodes[index]
     end
+    def test
+        puts "ASTBranch"
+        @nodes.each{|node| node.test}
+    end
 end

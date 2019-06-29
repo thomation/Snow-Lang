@@ -1,10 +1,10 @@
 require '../Core/Lexer'
-require '../Core/Parser'
+require '../Core/Parsers'
 
+puts "lexer"
 l = Lexer.new("./exp.sn")
 l.test
-p = Parser.new
-while l.peek(0) != nil do
-    ast = p.parse(l)
-    ast.test
-end
+puts "parser"
+p = Parsers.new
+ast = p.parse(l)
+ast.test
