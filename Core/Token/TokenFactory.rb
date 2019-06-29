@@ -9,18 +9,33 @@ require_relative 'BlockToken'
 
 class TokenFactory
     def self.create(line_no, value)
-        if value =~ /^\".*\"$/
-            return StrToken.new(line_no, value)
-        elsif value =~ /^[0-9]*\.?[0-9]+$/
-            return NumToken.new(line_no, value)
-        elsif value =~ /^(if|else|elseif|while)$/
-            return KeyToken.new(line_no, value)
-        elsif value =~ /^({|})$/
-            return BlockToken.new(line_no, value)
-        elsif value =~ /^(==|>=|<=|=|\+|-|\*|\/|<|>|and|or)$/
-            return OpToken.new(line_no, value)
-        else
-            return IdToken.new(line_no, value)
+        tokens = [
+            {
+                :class => StrToken,
+                :pattern => /^\".*\"$/,
+            },
+            {
+                :class => NumToken,
+                :pattern => /^[0-9]*\.?[0-9]+$/,
+            },
+            {
+                :class => KeyToken,
+                :pattern => /^(if|else|elseif|while)$/,
+            },
+            {
+                :class => BlockToken,
+                :pattern => /^({|})$/,
+            },
+            {
+                :class => OpToken,
+                :pattern => /^(==|>=|<=|=|\+|-|\*|\/|<|>|and|or)$/,
+            }
+        ]
+        tokens.each do |token|
+            if value =~ token[:pattern]
+                return token[:class].new(line_no, value)
+            end
         end
+        return IdToken.new(line_no, value)
     end
 end
