@@ -7,6 +7,7 @@ class Lexer
         lines.each_index { |index|
             find_tokens(index + 1, lines[index])
         }
+        @current_index = 0
     end
     def find_tokens(line_no, line)
         #puts "#{line_no} : #{line}"
@@ -22,6 +23,15 @@ class Lexer
     def remove_endline(line)
         captures = /^(.*)$/.match(line).captures
         return captures[0]
+    end
+    def peek(index)
+        if index + @current_index< @tokens.length
+            return @tokens[index + @current_index]
+        end
+        return nil
+    end
+    def next
+        @current_index += 1
     end
     def test
         @tokens.each{ |token|

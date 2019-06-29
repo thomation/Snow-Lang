@@ -1,9 +1,5 @@
 class ASTNode
-    def ASTNode child(int i)
+    def test
+        puts "ASTNode"
     end
-    def numChildren
-    end
-    def children
-    end
-
 end
