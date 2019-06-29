@@ -4,7 +4,7 @@ class ASTLeaf < ASTNode
     def initialize(token)
         @token = token
     end
-    def GetToken
+    def token
         return @token
     end
     def test
