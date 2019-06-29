@@ -1,2 +1,0 @@
-class BlockToken < Token
-end

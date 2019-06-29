@@ -1,0 +1,2 @@
+class SepToken < Token
+end
