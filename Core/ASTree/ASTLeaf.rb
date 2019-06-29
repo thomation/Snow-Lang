@@ -1,4 +1,4 @@
-class AstLeaf < AstNode
+class ASTLeaf < ASTNode
     def initialize(token)
         @token = token
     end
