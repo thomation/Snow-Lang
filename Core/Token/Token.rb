@@ -9,6 +9,9 @@ class Token
     def text
         return @value.to_s
     end
+    def line_no
+        return @line_no
+    end
     def test
         puts debug_s
     end

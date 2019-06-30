@@ -6,5 +6,7 @@ l = Lexer.new("./exp.sn")
 l.test
 puts "parser"
 p = Parsers.new
-ast = p.parse(l)
-ast.test(0, "root")
+while(l.peek(0)) do
+    ast = p.parse(l)
+    ast.test(0, "root")
+end

@@ -30,8 +30,10 @@ class Lexer
         end
         return nil
     end
-    def next
+    def fetch_first
+        token = peek(0)
         @current_index += 1
+        return token
     end
     def length
         return @tokens.length
