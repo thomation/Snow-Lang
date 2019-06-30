@@ -8,28 +8,78 @@ require_relative '../ASTree/Name'
 #expr -> factor {OP factor}
 
 class ExprParser < Parser
+    @@expr_setting = {
+        "*" => {:prio => 1,},
+        "/" => {:prio => 1,},
+        "+" => {:prio => 2,},
+        "-" => {:prio => 2,},
+        ">" => {:prio => 3,},
+        ">=" => {:prio => 3,},
+        "<" => {:prio => 3,},
+        "<=" => {:prio => 3,},
+        "==" => {:prio => 3,},
+        "not" => {:prio => 4,},
+        "and" => {:prio => 5,},
+        "or" => {:prio => 6,},
+        "=" => {:prio => 8,},
+    }
     def parse(lexer)
-        index = find_binary_op(lexer)
+        all_index = find_binary_ops(lexer)
         #puts "index of op #{index}"
         # TODO: +- or */ priority
-        if(index > 0)
-            left = FactorParser.new.parse(lexer)
-            op =  Name.new(lexer.fetch_first)
-            right = ExprParser.new.parse(lexer)
-            return BinaryExpr.new([left, op, right])
+        if all_index.length <= 0 
+            return FactorParser.new.parse(lexer)
         end
-        return FactorParser.new.parse(lexer)
+        #puts all_index 
+        return parse_binary(all_index, lexer)
     end
-    def find_binary_op(lexer)
+    def find_binary_ops(lexer)
         i = 1
+        ret = []
         line_no = lexer.peek(0).line_no
         while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != SepToken.right do
             #token.test
             if token.is_a? OpToken
-                return i
+                ret << i
             end
             i += 1
         end
-        return 0
+        return ret
+    end
+    def parse_binary(all_index, lexer)
+        factors = []
+        ops = []
+        all_index.each do |index|
+            factors << FactorParser.new.parse(lexer)
+            ops << Name.new(lexer.fetch_first)
+        end
+        factors << FactorParser.new.parse(lexer)
+        return create_binary_tree(ops, factors, 0, ops.length)
+    end
+    def create_binary_tree(ops, factors, head, tail)
+        if head + 1 < tail
+            index = find_low_prio_op(ops, head, tail)
+            left = create_binary_tree(ops, factors, head, index)
+            right = create_binary_tree(ops, factors, index + 1, tail)
+            return BinaryExpr.new([left, ops[index], right])
+        end
+        if head == tail
+            return factors[head]
+        end
+        return BinaryExpr.new([factors[head], ops[head], factors[head + 1]])    
+    end
+    def find_low_prio_op(ops, head, tail)
+        last_prio = 0
+        find_index = 0
+        i = 0
+        while(i < ops.length) do
+            prio = @@expr_setting[ops[i].name][:prio]
+            if prio > last_prio then
+                find_index = i
+                last_prio = prio
+            end
+            i += 1
+        end
+        return find_index
     end
 end
