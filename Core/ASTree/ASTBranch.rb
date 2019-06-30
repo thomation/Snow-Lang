@@ -7,8 +7,8 @@ class ASTBranch < ASTNode
     def child(index)
         return @nodes[index]
     end
-    def test
-        puts "ASTBranch"
-        @nodes.each{|node| node.test}
+    def test(level, tag)
+        debug_log(level, tag, "ASTBranch")
+        @nodes.each{|node| node.test(level + 1)}
     end
 end

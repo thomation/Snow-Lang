@@ -7,4 +7,4 @@ l.test
 puts "parser"
 p = Parsers.new
 ast = p.parse(l)
-ast.test
+ast.test(0, "root")

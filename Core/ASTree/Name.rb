@@ -4,7 +4,7 @@ class Name < ASTLeaf
     def name
         return token.text
     end
-    def test
-        puts "Name: #{name}"
+    def test(level, tag)
+        debug_log(level, tag, "Name: #{name}")
     end
 end

@@ -10,13 +10,10 @@ class BinaryExpr < ASTBranch
     def right
         return child(2)
     end
-    def test
-        puts BinaryExpr
-        puts "left:"
-        left.test
-        puts "operator:"
-        operator.test
-        puts "right:"
-        right.test
+    def test(level, tag)
+        debug_log(level, tag, "BinaryExpr")
+        left.test(level + 1, "left")
+        operator.test(level + 1, "operator")
+        right.test(level + 1, "right")
     end
 end

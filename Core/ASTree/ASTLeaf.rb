@@ -7,8 +7,7 @@ class ASTLeaf < ASTNode
     def token
         return @token
     end
-    def test
-        puts "ASTLeaf:"
-        @token.test
+    def test(level, tag)
+        debug_log(level, tag, "ASTLeaf #{@token.debug_s}")
     end
 end

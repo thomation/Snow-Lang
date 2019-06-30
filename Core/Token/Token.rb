@@ -10,6 +10,9 @@ class Token
         return @value.to_s
     end
     def test
-        puts "#{@line_no}\t#{self.class}\t$#{@value}$" 
+        puts debug_s
+    end
+    def debug_s
+        return "#{@line_no}\t#{self.class}\t$#{@value}$"
     end
 end

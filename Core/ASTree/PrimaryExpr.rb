@@ -1,8 +1,7 @@
 require_relative 'ASTBranch'
 
 class PrimaryExpr < ASTBranch
-    def test
-        puts "Primary"
-        super
+    def test(level, tag)
+        super(level, "Primary")
     end
 end
