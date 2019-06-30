@@ -9,7 +9,7 @@ require_relative '../ASTree/PrimaryExpr'
 class FactorParser < Parser
     def parse(lexer, head, tail)
         token = lexer.peek(head)
-        puts "Factor : #{token.text}"
+        #puts "Factor : #{token.text}"
         if token.is_a? OpToken and token.text == "-"
             parse_minus(lexer, head, tail)
         else
