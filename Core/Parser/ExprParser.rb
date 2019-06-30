@@ -9,7 +9,7 @@ require_relative '../ASTree/Name'
 
 class ExprParser < Parser
     def parse(lexer)
-        index = find_op(lexer)
+        index = find_binary_op(lexer)
         #puts "index of op #{index}"
         # TODO: +- or */ priority
         if(index > 0)
@@ -17,13 +17,11 @@ class ExprParser < Parser
             op =  Name.new(lexer.fetch_first)
             right = ExprParser.new.parse(lexer)
             return BinaryExpr.new([left, op, right])
-        else
-            # - is not a OP but a part of factor
-            return FactorParser.new.parse(lexer)
         end
+        return FactorParser.new.parse(lexer)
     end
-    def find_op(lexer)
-        i = 0
+    def find_binary_op(lexer)
+        i = 1
         line_no = lexer.peek(0).line_no
         while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != ")" do
             #token.test

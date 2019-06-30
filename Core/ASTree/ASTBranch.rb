@@ -9,6 +9,6 @@ class ASTBranch < ASTNode
     end
     def test(level, tag)
         debug_log(level, tag, "ASTBranch")
-        @nodes.each{|node| node.test(level + 1)}
+        @nodes.each{|node| node.test(level + 1, tag)}
     end
 end

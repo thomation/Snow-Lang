@@ -18,7 +18,7 @@ class FactorParser < Parser
     end
     def parse_minus(lexer)
         lexer.fetch_first
-        return NegativeExpr.new(parse_primary(lexer))
+        return NegativeExpr.new([parse_primary(lexer)])
     end
     def parse_primary(lexer)
         return PrimaryParser.new.parse(lexer)
