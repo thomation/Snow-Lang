@@ -23,7 +23,7 @@ class ExprParser < Parser
     def find_binary_op(lexer)
         i = 1
         line_no = lexer.peek(0).line_no
-        while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != ")" do
+        while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != SepToken.right do
             #token.test
             if token.is_a? OpToken
                 return i

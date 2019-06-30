@@ -21,18 +21,19 @@ class PrimaryParser < Parser
         i = 0
         while open_sep != close_sep and (token = lexer.peek(i)) != nil and token.line_no == line_no do
             if token.is_a? SepToken
-                if token.text == "("
+                if token.text == SepToken.left
                     open_sep += 1
                 end
-                if token.text == ")"
+                if token.text == SepToken.right
                     close_sep += 1
                 end
             end
             i += 1
         end
-        lexer.fetch_first
+        left = lexer.fetch_first
         expr = ExprParser.new.parse(lexer)
-        return PrimaryExpr.new([Name.new("("), expr, Name.new(")")])
+        right = lexer.fetch_first
+        return PrimaryExpr.new([Name.new(left), expr, Name.new(right)])
     end
     def parse_num(lexer)
         num =  NumberLiteral.new(lexer.fetch_first)
