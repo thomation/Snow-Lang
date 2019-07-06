@@ -1,9 +1,11 @@
 require_relative 'Parsers'
 require_relative 'Lexer'
+require_relative 'Environment'
 
 class Interpreter
     def initialize
         @parser = Parsers.new
+        @env = Environment.new
     end
     def run (file)
         puts "lexer"
