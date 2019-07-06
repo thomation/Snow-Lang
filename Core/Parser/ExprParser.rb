@@ -37,7 +37,7 @@ class ExprParser < Parser
         i = 1
         ret = []
         line_no = lexer.peek(0).line_no
-        while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != SepToken.right do
+        while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != SepToken.right and token.text != SepToken.open do
             #token.test
             if token.is_a? OpToken
                 ret << i
