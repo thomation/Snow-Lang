@@ -5,4 +5,10 @@ class SepToken < Token
     def self.right
         return ")"
     end
+    def self.open
+        return "{"
+    end
+    def self.close
+        return "}"
+    end
 end
