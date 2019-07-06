@@ -1,7 +1,7 @@
-require_relative './Parser/ExprParser'
+require_relative './Parser/ProgramParser'
 
 class Parsers
     def parse(lexer)
-        return ExprParser.new.parse(lexer)
+        return ProgramParser.new.parse(lexer)
     end
 end
