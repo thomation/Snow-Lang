@@ -7,6 +7,9 @@ class ASTBranch < ASTNode
     def child(index)
         return @nodes[index]
     end
+    def childAmount
+        return @nodes.length
+    end
     def test(level, tag)
         debug_log(level, tag, "ASTBranch")
         @nodes.each{|node| node.test(level + 1, tag)}

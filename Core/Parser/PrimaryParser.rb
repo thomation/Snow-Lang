@@ -2,6 +2,7 @@ require_relative 'Parser'
 require_relative 'ExprParser'
 require_relative '../ASTree/NumberLiteral'
 require_relative '../ASTree/PrimaryExpr'
+require_relative '../AStree/Seperator'
 
 #primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING
 
@@ -33,7 +34,7 @@ class PrimaryParser < Parser
         left = lexer.fetch_first
         expr = ExprParser.new.parse(lexer)
         right = lexer.fetch_first
-        return PrimaryExpr.new([Name.new(left), expr, Name.new(right)])
+        return PrimaryExpr.new([Seperator.new(left), expr, Seperator.new(right)])
     end
     def parse_num(lexer)
         num =  NumberLiteral.new(lexer.fetch_first)

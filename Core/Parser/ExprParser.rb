@@ -3,7 +3,7 @@ require_relative 'Parser'
 require_relative 'FactorParser'
 require_relative 'ExprParser'
 require_relative '../ASTree/BinaryExpr'
-require_relative '../ASTree/Name'
+require_relative '../ASTree/Operator'
 
 #expr -> factor {OP factor}
 
@@ -51,7 +51,7 @@ class ExprParser < Parser
         ops = []
         all_index.each do |index|
             factors << FactorParser.new.parse(lexer)
-            ops << Name.new(lexer.fetch_first)
+            ops << Operator.new(lexer.fetch_first)
         end
         factors << FactorParser.new.parse(lexer)
         return create_binary_tree(ops, factors, 0, ops.length)
@@ -73,7 +73,7 @@ class ExprParser < Parser
         find_index = 0
         i = 0
         while(i < ops.length) do
-            prio = @@expr_setting[ops[i].name][:prio]
+            prio = @@expr_setting[ops[i].value][:prio]
             if prio > last_prio then
                 find_index = i
                 last_prio = prio

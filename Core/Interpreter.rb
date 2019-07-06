@@ -1,6 +1,7 @@
 require_relative 'Parsers'
 require_relative 'Lexer'
 require_relative 'Environment'
+Dir[File.dirname(__FILE__) + '/Evaluator/*.rb'].each {|file| require file }
 
 class Interpreter
     def initialize
@@ -15,6 +16,7 @@ class Interpreter
         while(l.peek(0)) do
             ast = @parser.parse(l)
             ast.test(0, "root")
+            puts "value: #{ast.eval(@env)}"
         end
     end
 end
