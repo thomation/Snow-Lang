@@ -31,3 +31,6 @@ loop -> "while" expr block
 statement -> simple | branch | loop
 
 program -> [statemen] EOL
+
+# Plugin
+https://github.com/rubyide/vscode-ruby
