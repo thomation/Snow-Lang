@@ -19,14 +19,14 @@ class BinaryExpr
         a = lvalue
         b = rvalue
         case op
-        when "+"
-            return a + b
-        when "-"
-            return a - b
-        when "*"
-            return a * b
-        when "/"
-            return a / b
+        when "+" then return a + b
+        when "-" then return a - b
+        when "*" then return a * b
+        when "/" then return a / b
+        when ">" then return a > b ? 1 : 0
+        when "<" then return a < b ? 1 : 0
+        when ">=" then return a >= b ? 1 : 0
+        when "<=" then return a <= b ? 1 : 0
         else
             raise "Invalid operator #{op}"
         end
