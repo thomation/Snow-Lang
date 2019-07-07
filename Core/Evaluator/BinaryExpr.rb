@@ -1,13 +1,23 @@
 class BinaryExpr
     def eval(env)
+        if operator.value == "="
+            return compute_assign(env, right.eval(env))
+        end
         return compute_op(left.eval(env), operator.value, right.eval(env))
     end
-    def compute_op(left, op, right)
-        return compute_number(left, op, right)
+    def compute_assign(env, rvalue)
+        if left.is_a? Name
+            env.put(left.name, rvalue)
+            return rvalue
+        end
+        raise "The left part is not a id"
     end
-    def compute_number(left, op, right)
-        a = left
-        b = right
+    def compute_op(lvalue, op, rvalue)
+        return compute_number(lvalue, op, rvalue)
+    end
+    def compute_number(lvalue, op, rvalue)
+        a = lvalue
+        b = rvalue
         case op
         when "+"
             return a + b

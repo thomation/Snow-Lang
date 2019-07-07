@@ -25,12 +25,9 @@ class ExprParser < Parser
     }
     def parse(lexer)
         all_index = find_binary_ops(lexer)
-        #puts "index of op #{index}"
-        # TODO: +- or */ priority
         if all_index.length <= 0 
             return FactorParser.new.parse(lexer)
         end
-        #puts all_index 
         return parse_binary(all_index, lexer)
     end
     def find_binary_ops(lexer)
@@ -38,7 +35,6 @@ class ExprParser < Parser
         ret = []
         line_no = lexer.peek(0).line_no
         while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != SepToken.right and token.text != SepToken.open do
-            #token.test
             if token.is_a? OpToken
                 ret << i
             end

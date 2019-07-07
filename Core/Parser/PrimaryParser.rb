@@ -1,6 +1,8 @@
 require_relative 'Parser'
 require_relative 'ExprParser'
 require_relative '../ASTree/NumberLiteral'
+require_relative '../ASTree/StringLiteral'
+require_relative '../ASTree/Name'
 require_relative '../ASTree/PrimaryExpr'
 require_relative '../AStree/Seperator'
 
@@ -10,10 +12,15 @@ class PrimaryParser < Parser
     def parse(lexer)
         token = lexer.peek(0)
         if token.is_a? SepToken and token.text == SepToken.left
-            parse_sep_expr(lexer)
+            return parse_sep_expr(lexer)
         elsif token.is_a? NumToken
-            parse_num(lexer)
+            return parse_num(lexer)
+        elsif token.is_a? IdToken
+            return parse_id(lexer)
+        elsif token.is_a? StrToken
+            return parse_string(lexer)   
         end
+        raise "Cannot parse primary with #{token.text}"
     end
     def parse_sep_expr(lexer)
         open_sep = 1
@@ -37,10 +44,12 @@ class PrimaryParser < Parser
         return PrimaryExpr.new([Seperator.new(left), expr, Seperator.new(right)])
     end
     def parse_num(lexer)
-        num =  NumberLiteral.new(lexer.fetch_first)
+        return NumberLiteral.new(lexer.fetch_first)
     end
     def parse_id(lexer)
+        return Name.new(lexer.fetch_first)
     end
     def parse_string(lexer)
+        return StringLiteral.new(lexer.fetch_first)
     end
 end

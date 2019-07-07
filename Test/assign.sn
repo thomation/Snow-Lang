@@ -1,0 +1,5 @@
+a = 1
+b = 0
+a = b
+a = a + 1
+str = "helloworld"
