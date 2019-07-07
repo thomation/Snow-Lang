@@ -7,7 +7,7 @@ class ASTBranch < ASTNode
     def child(index)
         return @nodes[index]
     end
-    def childAmount
+    def childrenAmount
         return @nodes.length
     end
     def test(level, tag)

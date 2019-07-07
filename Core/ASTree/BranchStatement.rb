@@ -6,7 +6,7 @@ class BranchStatement < ASTBranch
         return child(index * 2)
     end
     def is_else?(index)
-        return index * 2 + 1 >= childAmount
+        return index * 2 + 1 >= childrenAmount
     end
     def branch_statement(index)
         return child(index * 2) unless !is_else?(index)
@@ -15,7 +15,7 @@ class BranchStatement < ASTBranch
     def test(level, tag)
         debug_log(level, tag, "BranchStatement")
         index = 0
-        while index * 2 < childAmount do
+        while index * 2 < childrenAmount do
             if index == 0
                 condition(index).test(level + 1, "condition")
                 branch_statement(index).test(level + 1, "if")
