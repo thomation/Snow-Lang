@@ -47,7 +47,7 @@ class ExprParser < Parser
         ops = []
         all_index.each do |index|
             factors << FactorParser.new.parse(lexer)
-            ops << Operator.new(lexer.fetch_first)
+            ops << Operator.new(lexer.first!)
         end
         factors << FactorParser.new.parse(lexer)
         return create_binary_tree(ops, factors, 0, ops.length)

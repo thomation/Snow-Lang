@@ -32,7 +32,7 @@ class BranchParser < Parser
         when "mid" then return nil unless lexer.peek(0).text == "else" or lexer.peek(0).text == "elseif"
         when "close" then return nil
         end          
-        return KeyWord.new(lexer.fetch_first)
+        return KeyWord.new(lexer.first!)
     end
     def compute_next_state(key)
         case key

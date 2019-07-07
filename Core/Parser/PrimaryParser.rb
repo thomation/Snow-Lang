@@ -38,18 +38,18 @@ class PrimaryParser < Parser
             end
             i += 1
         end
-        left = lexer.fetch_first
+        left = lexer.first!
         expr = ExprParser.new.parse(lexer)
-        right = lexer.fetch_first
+        right = lexer.first!
         return PrimaryExpr.new([Seperator.new(left), expr, Seperator.new(right)])
     end
     def parse_num(lexer)
-        return NumberLiteral.new(lexer.fetch_first)
+        return NumberLiteral.new(lexer.first!)
     end
     def parse_id(lexer)
-        return Name.new(lexer.fetch_first)
+        return Name.new(lexer.first!)
     end
     def parse_string(lexer)
-        return StringLiteral.new(lexer.fetch_first)
+        return StringLiteral.new(lexer.first!)
     end
 end
