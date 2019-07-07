@@ -1,3 +1,2 @@
-require '../Core/Interpreter'
-
-Interpreter.new.run("./exp.sn")
+require_relative '../Core/Interpreter'
+Interpreter.new.run( File.dirname(__FILE__) + "/exp.sn")
