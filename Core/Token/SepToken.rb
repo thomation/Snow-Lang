@@ -1,3 +1,5 @@
+require_relative 'Token'
+
 class SepToken < Token
     def self.left
         return "("

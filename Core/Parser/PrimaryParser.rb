@@ -9,7 +9,7 @@ require_relative '../AStree/Seperator'
 class PrimaryParser < Parser
     def parse(lexer)
         token = lexer.peek(0)
-        if token.is_a? SepToken
+        if token.is_a? SepToken and token.text == SepToken.left
             parse_sep_expr(lexer)
         elsif token.is_a? NumToken
             parse_num(lexer)
