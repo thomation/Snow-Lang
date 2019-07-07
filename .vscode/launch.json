@@ -5,10 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Local File",
+            "name": "Debug Test.rb",
             "type": "Ruby",
             "request": "launch",
-            "program": "${workspaceRoot}/Test/TestExp.rb"
+            "program": "${workspaceRoot}/Test/Test.rb",
+            "args": ["branch.sn"]
         },
     ]
 }
