@@ -1,6 +1,7 @@
 require_relative 'Parser'
 require_relative 'SimpleParser'
 require_relative 'BranchParser'
+require_relative 'LoopParser'
 
 #statement -> simple | branch | loop
 class StatementParser < Parser
@@ -25,5 +26,6 @@ class StatementParser < Parser
         return BranchParser.new.parse(lexer)
     end
     def parse_loop(lexer)
+        return LoopParser.new.parse(lexer)
     end
 end
