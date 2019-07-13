@@ -8,3 +8,4 @@ def fact(n)
     }
     f
 }
+fact(8)
