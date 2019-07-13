@@ -34,7 +34,7 @@ statement -> simple | branch | loop
 
 block ->  "{" [statement] { EOL [statement] } "}"
 
-### Fucntion
+### Function
 
 params -> IDENTIFIER {"," IDENTIFIER}
 
