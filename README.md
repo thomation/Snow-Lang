@@ -2,7 +2,7 @@
 
 ## Token
 
-KEY:     /^(if|else|elseif|while)$/
+KEY:     /^(if|else|elseif|while|def)$/
 
 BLOCK:   /^({|})$/
 
