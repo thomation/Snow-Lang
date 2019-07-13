@@ -14,13 +14,15 @@ STRING: /^\".*\"$/
 
 ## BNF
 
-primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING
+### Expression
+
+primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call
 
 factor -> "-" primary | primary
 
 expr -> factor {OP factor}
 
-block ->  "{" [statement] { EOL [statement] } "}" 
+### Statement
 
 simple -> expr
 
@@ -30,7 +32,21 @@ loop -> "while" expr block
 
 statement -> simple | branch | loop
 
-program -> [statemen] EOL
+block ->  "{" [statement] { EOL [statement] } "}"
+
+### Fucntion
+
+params -> IDENTIFIER {"," IDENTIFIER}
+
+def -> "def" IDENTIFIER "("[params]")" block
+
+args ->  expr {"," expr}
+
+call -> IDENTIFIER "("[args]")"
+
+### Program
+
+program -> [def | statement] EOL
 
 # Plugin
 https://github.com/rubyide/vscode-ruby
