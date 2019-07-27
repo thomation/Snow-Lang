@@ -1,6 +1,6 @@
 def counter (c)
 {
-    f = func()
+    f = fun()
     {
         c = c + 1
     }

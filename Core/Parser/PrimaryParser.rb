@@ -1,13 +1,14 @@
 require_relative 'Parser'
 require_relative 'ExprParser'
 require_relative 'CallParser'
+require_relative 'ClosureParser'
 require_relative '../ASTree/NumberLiteral'
 require_relative '../ASTree/StringLiteral'
 require_relative '../ASTree/Name'
 require_relative '../ASTree/PrimaryExpr'
 require_relative '../AStree/Seperator'
 
-#primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call
+#primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure
 
 class PrimaryParser < Parser
     def parse(lexer)
@@ -19,7 +20,9 @@ class PrimaryParser < Parser
         elsif token.is_a? IdToken
             return parse_id(lexer)
         elsif token.is_a? StrToken
-            return parse_string(lexer)   
+            return parse_string(lexer)
+        elsif token.is_a? KeyToken and token.text == "fun"
+            return parse_closure(lexer)
         end
         raise "Cannot parse primary with #{token.text}"
     end
@@ -56,5 +59,8 @@ class PrimaryParser < Parser
     end
     def parse_string(lexer)
         return StringLiteral.new(lexer.first!)
+    end
+    def parse_closure(lexer)
+        return ClosureParser.new.parse(lexer)
     end
 end

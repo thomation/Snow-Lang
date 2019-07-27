@@ -1,2 +1,3 @@
 class KeyToken < Token
+    
 end
