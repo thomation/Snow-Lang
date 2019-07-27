@@ -1,6 +1,9 @@
+require_relative 'Function'
+
 class DefStatement < ASTBranch
     def eval(env)
-        env.put_new(name.name, self)
-        return 0
+        f = Function.new(params, body, env)
+        env.put_new(name.name, f)
+        return f
     end
 end

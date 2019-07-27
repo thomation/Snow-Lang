@@ -1,13 +1,13 @@
 def counter (c)
 {
-    f = fun()
+    f = fun(n)
     {
-        c = c + 1
+        c = c + n
     }
     f
 }
 c1 = counter(0)
 c2 = counter(0)
-c1()
-c1()
-c2()
+c1(1)
+c1(2)
+c2(3)
