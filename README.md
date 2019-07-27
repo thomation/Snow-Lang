@@ -16,7 +16,7 @@ STRING: /^\".*\"$/
 
 ### Expression
 
-primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call
+primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure
 
 factor -> "-" primary | primary
 
@@ -43,6 +43,8 @@ def -> "def" IDENTIFIER "("[params]")" block
 args ->  expr {"," expr}
 
 call -> IDENTIFIER "("[args]")"
+
+closure -> "fun" "("[params]")" block
 
 ### Program
 
