@@ -8,11 +8,38 @@
 	"buffers":
 	[
 		{
-			"file": "Snow-Lang.sublime-project",
+			"file": "Test/function.sn",
 			"settings":
 			{
-				"buffer_size": 45,
-				"line_ending": "Unix"
+				"buffer_size": 103,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Test/scope.sn",
+			"settings":
+			{
+				"buffer_size": 49,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Core/Environment.rb",
+			"settings":
+			{
+				"buffer_size": 543,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Core/Interpreter.rb",
+			"settings":
+			{
+				"buffer_size": 539,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -93,6 +120,7 @@
 		"/C/codes/Snow/Snow-Lang",
 		"/C/codes/Snow/Snow-Lang/.vscode",
 		"/C/codes/Snow/Snow-Lang/Core",
+		"/C/codes/Snow/Snow-Lang/Core/Token",
 		"/C/codes/Snow/Snow-Lang/Test"
 	],
 	"file_history":
@@ -153,16 +181,74 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Snow-Lang.sublime-project",
+					"file": "Test/function.sn",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 45,
+						"buffer_size": 103,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								103,
+								0
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1564208330.41,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Test/scope.sn",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 49,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								32,
+								32
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Core/Environment.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 543,
 						"regions":
 						{
 						},
@@ -175,14 +261,45 @@
 						],
 						"settings":
 						{
-							"markdonw_live_preview_last_run": 1564197806.55,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"markdonw_live_preview_last_run": 1564208771.61,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Core/Interpreter.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								242,
+								253
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1564209239.79,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -240,6 +357,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"interp",
+				"Core\\Interpreter.rb"
+			],
+			[
+				"evri",
+				"Core\\Environment.rb"
+			]
 		],
 		"width": 0.0
 	},
@@ -269,7 +394,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 412.0,
+	"side_bar_width": 391.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

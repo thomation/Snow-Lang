@@ -6,7 +6,7 @@ Dir[File.dirname(__FILE__) + '/Evaluator/*.rb'].each {|file| require file }
 class Interpreter
     def initialize
         @parser = Parsers.new
-        @env = Environment.new
+        @env = Environment.new(nil)
     end
     def run (file)
         puts "lexer"

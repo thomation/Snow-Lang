@@ -1,11 +1,24 @@
 class Environment
-    def initialize
+    def initialize(outer)
         @names = Hash.new
+        @outer = outer
     end
     def get(name)
-        return @names[name]
+        v = @names[name]
+        return v if v != nil or @outer == nil
+        return @outer.get(name)
+    end
+    def put_new(name, value)
+        return @names[name] = value
     end
     def put(name, value)
-        return @names[name] = value
+    	e = where(name)
+    	e = self if e == nil
+    	e.put_new(name, value)
+    end
+    def where(name)
+    	return self if @names[name] != nil
+    	return nil if @outer == nil
+    	return @outer.where(name)
     end
 end
