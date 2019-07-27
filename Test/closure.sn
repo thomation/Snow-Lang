@@ -1,0 +1,13 @@
+def counter (c)
+{
+    f = func()
+    {
+        c = c + 1
+    }
+    f
+}
+c1 = counter(0)
+c2 = counter(0)
+c1()
+c1()
+c2()
