@@ -4,9 +4,9 @@ require_relative 'Environment'
 Dir[File.dirname(__FILE__) + '/Evaluator/*.rb'].each {|file| require file }
 
 class Interpreter
-    def initialize
+    def initialize(env)
         @parser = Parsers.new
-        @env = Environment.new(nil)
+        @env = env
     end
     def run (file)
         puts "lexer"
