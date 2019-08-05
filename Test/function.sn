@@ -8,6 +8,6 @@ def fact(n)
     }
     f
 }
-print("begin")
+print("begin", "1")
 fact(8)
 print("end")

@@ -4,7 +4,7 @@ class Natives
         return append_natives(env)
     end
     def append_natives(env)
-        env.put_new('print', NativeFunction.new)
+        env.put_new('print', NativeFunction.new(Proc.new{|args| puts args}))
         return env
     end
 end
