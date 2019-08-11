@@ -16,7 +16,7 @@ STRING: /^\".*\"$/
 
 ### Expression
 
-primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure
+primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure | access_class_member
 
 factor -> "-" primary | primary
 
@@ -46,9 +46,16 @@ call -> IDENTIFIER "("[args]")"
 
 closure -> "fun" "("[params]")" block
 
+### Class
+
+defclass -> "class" IDENTIFIER ["extend" IDENTIFIER] class_body
+class_body -> "{" [member] { EOL [member]} "}"
+member -> def | simple
+access_class_member -> primary "." IDENTIFIER {"("[args]")"}
+
 ### Program
 
-program -> [def | statement] EOL
+program -> [defclass | def | statement] EOL
 
 # Plugin
 https://github.com/rubyide/vscode-ruby
