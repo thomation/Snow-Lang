@@ -6,6 +6,8 @@ class AccessClassMemberStatement
         raise "Cannot find object:#{object.name}" unless c
         if c.is_a? SnowClass
             handle_class(c)
+        elsif c.is_a? SnowObject
+            handle_object(c, outer_env)
         end
     end
     def handle_class(c)
@@ -22,6 +24,7 @@ class AccessClassMemberStatement
         c.body.eval(env)
         o
     end
-    def handle_object()
+    def handle_object(o, env)
+        o.read(member.name)
     end
 end

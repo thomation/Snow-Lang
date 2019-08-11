@@ -8,7 +8,8 @@ class Position
         y = ny
     }
 }
-p = Postion.new
+p = Position.new
 p.move(3,4)
 p.x = 10
+p.y = 2
 p.x + p.y

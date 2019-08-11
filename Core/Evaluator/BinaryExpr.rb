@@ -10,7 +10,12 @@ class BinaryExpr
             env.put(left.name, rvalue)
             return rvalue
         end
-        raise "The left part is not a id"
+        if left.is_a? AccessClassMemberStatement
+            o = env.get(left.object.name)
+            o.write(left.member.name, rvalue)
+            return rvalue
+        end
+        raise "The left part is not a id but #{left.class}"
     end
     def compute_op(lvalue, op, rvalue)
         return compute_number(lvalue, op, rvalue)
