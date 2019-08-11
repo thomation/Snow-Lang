@@ -10,6 +10,7 @@ class Position
 }
 p = Position.new
 p.move(3,4)
+p.x + p.y
 p.x = 10
 p.y = 2
 p.x + p.y

@@ -21,4 +21,8 @@ class Environment
     	return nil if @outer == nil
     	return @outer.where(name)
     end
+    def test
+        puts self
+        @outer.test if @outer
+    end
 end
