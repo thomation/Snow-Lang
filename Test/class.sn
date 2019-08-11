@@ -1,0 +1,14 @@
+class Position
+{
+    x = 0
+    y = 0
+    def move(nx, ny)
+    {
+        x = nx
+        y = ny
+    }
+}
+p = Postion
+p.move(3,4)
+p.x = 10
+print(p.x + p.y)
