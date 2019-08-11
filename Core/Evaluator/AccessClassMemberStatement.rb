@@ -1,6 +1,9 @@
 require_relative '../Objects/SnowObject'
+require_relative 'EvalFunc'
 
 class AccessClassMemberStatement
+    include EvalFunc
+
     def eval(outer_env)
         c = outer_env.get(object.name)
         raise "Cannot find object:#{object.name}" unless c
@@ -30,14 +33,5 @@ class AccessClassMemberStatement
             eval_func(env, m)
         end
         m
-    end
-    def eval_func(outer_env, f)
-        i = 0
-        env = f.make_env
-        while i < f.params.size do
-            env.put_new(f.params.name(i).name, arg(i).eval(outer_env))
-            i += 1
-        end
-        f.body.eval(env)
     end
 end
