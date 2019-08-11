@@ -9,7 +9,7 @@ class Environment
         return @outer.get(name)
     end
     def put_new(name, value)
-        return @names[name] = value
+        @names[name] = value
     end
     def put(name, value)
     	e = where(name)
