@@ -20,7 +20,7 @@ class TokenFactory
             },
             {
                 :class => KeyToken,
-                :pattern => /^(if|else|elseif|while|def|fun)$/,
+                :pattern => /^(if|else|elseif|while|def|fun|class|extends)$/,
             },
             {
                 :class => SepToken,

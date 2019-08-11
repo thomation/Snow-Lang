@@ -48,9 +48,12 @@ closure -> "fun" "("[params]")" block
 
 ### Class
 
-defclass -> "class" IDENTIFIER ["extend" IDENTIFIER] class_body
+defclass -> "class" IDENTIFIER ["extends" IDENTIFIER] class_body
+
 class_body -> "{" [member] { EOL [member]} "}"
+
 member -> def | simple
+
 access_class_member -> primary "." IDENTIFIER {"("[args]")"}
 
 ### Program
