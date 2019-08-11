@@ -54,7 +54,7 @@ class_body -> "{" [member] { EOL [member]} "}"
 
 member -> def | simple
 
-access_class_member -> primary "." IDENTIFIER {"("[args]")"}
+access_class_member -> IDENTIFIER "." IDENTIFIER {"("[args]")"}
 
 ### Program
 

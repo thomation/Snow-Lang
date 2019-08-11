@@ -1,6 +1,7 @@
 require_relative 'Parser'
 require_relative 'ExprParser'
 require_relative 'CallParser'
+require_relative 'AccessClassMemberParser'
 require_relative 'ClosureParser'
 require_relative '../ASTree/NumberLiteral'
 require_relative '../ASTree/StringLiteral'
@@ -8,7 +9,7 @@ require_relative '../ASTree/Name'
 require_relative '../ASTree/PrimaryExpr'
 require_relative '../AStree/Seperator'
 
-#primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure
+#primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure | access_class_member
 
 class PrimaryParser < Parser
     def parse(lexer)
@@ -52,9 +53,8 @@ class PrimaryParser < Parser
     end
     def parse_id(lexer)
         token = lexer.peek(1)
-        if token and token.is_a? SepToken and token.text == SepToken.left
-            return CallParser.new.parse(lexer)
-        end
+        return CallParser.new.parse(lexer) if token and token.is_a? SepToken and token.text == SepToken.left
+        return AccessClassMemberParser.new.parse(lexer) if token and token.is_a? AccessToken and token.text == "."
         return Name.new(lexer.first!)
     end
     def parse_string(lexer)
