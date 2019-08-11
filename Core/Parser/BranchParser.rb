@@ -2,7 +2,7 @@ require_relative 'Parser'
 require_relative '../ASTree/KeyWord'
 require_relative 'ExprParser'
 require_relative 'BlockParser'
-require_relative '../Token/SepToken'
+require_relative '../Token/Token'
 require_relative '../ASTree/BranchStatement'
 
 #branch -> "if" expr block {"elseif" block} ["else" block]

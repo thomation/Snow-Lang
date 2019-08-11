@@ -1,11 +1,4 @@
 require_relative 'Token'
-require_relative 'IdToken'
-require_relative 'NumToken'
-require_relative 'StrToken'
-require_relative 'ErrToken'
-require_relative 'KeyToken'
-require_relative 'OpToken'
-require_relative 'SepToken'
 
 class TokenFactory
     def self.create(line_no, value)
@@ -29,6 +22,10 @@ class TokenFactory
             {
                 :class => OpToken,
                 :pattern => /^(==|>=|<=|=|\+|-|\*|\/|<|>|and|or)$/,
+            },
+            {
+                :class => AccessToken,
+                :pattern => /^(\.)$/,
             }
         ]
         tokens.each do |token|

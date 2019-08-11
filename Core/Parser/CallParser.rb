@@ -1,7 +1,7 @@
 require_relative 'Parser'
 require_relative '../ASTree/CallStatement'
 require_relative '../ASTree/Name'
-require_relative '../Token/SepToken'
+require_relative '../Token/Token'
 require_relative 'ExprParser'
 
 #call -> IDENTIFIER "("[args]")"

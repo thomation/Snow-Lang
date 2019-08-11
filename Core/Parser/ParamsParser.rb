@@ -1,7 +1,7 @@
 require_relative 'Parser'
 require_relative '../ASTree/ParamsList'
 require_relative '../ASTree/Name'
-require_relative '../Token/SepToken'
+require_relative '../Token/Token'
 
 #params -> IDENTIFIER {"," IDENTIFIER}
 

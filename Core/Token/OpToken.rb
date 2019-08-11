@@ -1,2 +1,0 @@
-class OpToken < Token
-end
