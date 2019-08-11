@@ -1,4 +1,4 @@
-require_relative 'Function'
+require_relative '../Objects/Function'
 
 class FunStatement < ASTBranch
     def eval(env)

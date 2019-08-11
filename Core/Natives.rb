@@ -1,4 +1,4 @@
-require_relative 'Evaluator/NativeFunction'
+require_relative 'Objects/NativeFunction'
 class Natives
     def env(env)
         return append_natives(env)
