@@ -8,6 +8,18 @@ class Position
         y = ny
     }
 }
+
+class Pos3D extends Position
+{
+    z = 0
+    def set(nx, ny, nz)
+    {
+        x = nx
+        y = ny
+        z = nz
+    }
+}
+
 p = Position.new
 p.move(3,4)
 p.x + p.y
