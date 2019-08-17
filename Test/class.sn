@@ -26,3 +26,10 @@ p.x + p.y
 p.x = 10
 p.y = 2
 p.x + p.y
+
+p3 = Pos3D.new
+p3.move(3,4)
+p3.x + p3.y + p3.z
+
+p3.set(5, 6, 7)
+p3.x + p3.y + p3.z

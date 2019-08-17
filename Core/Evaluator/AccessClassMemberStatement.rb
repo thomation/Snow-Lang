@@ -24,8 +24,12 @@ class AccessClassMemberStatement
         env = Environment.new(c.env)
         o = SnowObject.new(env)
         env.put_new("this", o)
-        c.body.eval(env)
+        init_object(c, env)
         o
+    end
+    def init_object(c, env)
+        init_object(c.super_class, env) if c.super_class
+        c.body.eval(env)
     end
     def handle_object(o, env)
         m = o.read(member.name)
