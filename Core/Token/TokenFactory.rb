@@ -17,7 +17,7 @@ class TokenFactory
             },
             {
                 :class => SepToken,
-                :pattern => /^({|}|\(|\))|(,)$/,
+                :pattern => /^({|}|\(|\)|,|\[|\])$/,
             },
             {
                 :class => OpToken,

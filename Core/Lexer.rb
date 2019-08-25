@@ -13,7 +13,7 @@ class Lexer
         #puts "#{line_no} : #{line}"
 
         line = remove_endline(line)
-        words = line.split(/(==)|(>=)|(<=)|(=)|(\+)|(-)|(\*)|(\/)|(\()|(\))|(>)|(<)|({)|(})|(,)|(\.)|[ ]+/)
+        words = line.split(/(==)|(>=)|(<=)|(=)|(\+)|(-)|(\*)|(\/)|(\()|(\))|(>)|(<)|({)|(})|(,)|(\.)|(\[)|(\])|[ ]+/)
         words.each{ |word|
             word = word.strip
             #puts "$#{word}$"
