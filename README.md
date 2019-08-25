@@ -16,49 +16,49 @@ STRING: /^\".*\"$/
 
 ### Expression
 
-primary -> "(" expr ")" | NUMBER | IDENTIFIER | STRING | call | closure | access_class_member
+primary = "(", expr, ")" | NUMBER | IDENTIFIER | STRING | call | closure | access_class_member;
 
-factor -> "-" primary | primary
+factor = "-", primary | primary;
 
-expr -> factor {OP factor}
+expr = factor, {OP, factor};
 
 ### Statement
 
-simple -> expr
+simple = expr;
 
-branch -> "if" expr block {"elseif" block} ["else" block]
+branch = "if", expr, block, {"elseif", block}, ["else", block];
 
-loop -> "while" expr block
+loop = "while", expr, block;
 
-statement -> simple | branch | loop
+statement = simple | branch | loop;
 
-block ->  "{" [statement] { EOL [statement] } "}"
+block =  "{", [statement], { EOL, [statement] }, "}";
 
 ### Function
 
-params -> IDENTIFIER {"," IDENTIFIER}
+params = IDENTIFIER, {",", IDENTIFIER};
 
-def -> "def" IDENTIFIER "("[params]")" block
+def = "def", IDENTIFIER, "(", [params], ")", block;
 
-args ->  expr {"," expr}
+args =  expr, {",", expr};
 
-call -> IDENTIFIER "("[args]")"
+call = IDENTIFIER, "(", [args], ")";
 
-closure -> "fun" "("[params]")" block
+closure = "fun", "(", [params], ")", block;
 
 ### Class
 
-defclass -> "class" IDENTIFIER ["extends" IDENTIFIER] class_body
+defclass = "class", IDENTIFIER, ["extends", IDENTIFIER],  class_body;
 
-class_body -> "{" [member] { EOL [member]} "}"
+class_body = "{", [member], { EOL, [member] }, "}";
 
-member -> def | simple
+member = def | simple;
 
-access_class_member -> IDENTIFIER "." IDENTIFIER {"("[args]")"}
+access_class_member = IDENTIFIER, ".", IDENTIFIER, {"(", [args], ")"};
 
 ### Program
 
-program -> [defclass | def | statement] EOL
+program = [defclass | def | statement], EOL;
 
 # Plugin
 https://github.com/rubyide/vscode-ruby
