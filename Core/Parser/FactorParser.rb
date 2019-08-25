@@ -4,23 +4,22 @@ require_relative '../ASTree/NegativeExpr'
 require_relative '../ASTree/PrimaryExpr'
 
 
-#factor -> "-" primary | primary
+#factor = "-", primary | primary;
 
 class FactorParser < Parser
-    def parse(lexer)
+    def parse(lexer, right_boundary)
         token = lexer.peek(0)
-        #puts "Factor : #{token.text}"
         if token.is_a? OpToken and token.text == "-"
-            parse_minus(lexer)
+            parse_minus(lexer, right_boundary)
         else
-            parse_primary(lexer)
+            parse_primary(lexer, right_boundary)
         end
     end
-    def parse_minus(lexer)
+    def parse_minus(lexer, right_boundary)
         lexer.first!
-        return NegativeExpr.new([parse_primary(lexer)])
+        return NegativeExpr.new([parse_primary(lexer, right_boundary)])
     end
-    def parse_primary(lexer)
-        return PrimaryParser.new.parse(lexer)
+    def parse_primary(lexer, right_boundary)
+        return PrimaryParser.new.parse(lexer, right_boundary)
     end
 end

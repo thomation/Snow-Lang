@@ -5,22 +5,22 @@ require_relative 'BlockParser'
 require_relative '../Token/Token'
 require_relative '../ASTree/BranchStatement'
 
-#branch -> "if" expr block {"elseif" block} ["else" block]
+#branch = "if", expr, block, {"elseif", block}, ["else", block];
 class BranchParser < Parser
-    def parse(lexer)
-        children = parse_children(lexer)
+    def parse(lexer, right_boundary)
+        children = parse_children(lexer, right_boundary)
         return BranchStatement.new(children)
     end
-    def parse_children(lexer)
+    def parse_children(lexer, right_boundary)
         children = Array.new
         state = "open"
         while (k = parse_next_key(lexer, state)) != nil do
             state = compute_next_state(k.name)
-            c = parse_next_condition(lexer)
+            c = parse_next_condition(lexer, right_boundary)
             if c != nil
                 children << c
             end
-            b = parse_next_block(lexer)
+            b = parse_next_block(lexer, right_boundary)
             children << b
         end
         return children
@@ -43,13 +43,11 @@ class BranchParser < Parser
             raise "no valid key #{key}"
         end
     end
-    def parse_next_condition(lexer)
-        if lexer.peek(0) == SepToken.open
-            return nil
-        end
-        return ExprParser.new.parse(lexer)
+    def parse_next_condition(lexer, right_boundary)
+        return nil if lexer.peek(0).text == SepToken.open
+        return ExprParser.new.parse(lexer, right_boundary)
     end
-    def parse_next_block(lexer)
-        return BlockParser.new.parse(lexer)
+    def parse_next_block(lexer, right_boundary)
+        return BlockParser.new.parse(lexer, right_boundary)
     end
 end

@@ -35,8 +35,17 @@ class Lexer
         @current_index += 1
         return token
     end
+    def current_index
+        @current_index
+    end
     def length
         return @tokens.length
+    end
+    def is_end?
+        over? @tokens.length
+    end
+    def over?(index)
+        @current_index >= index 
     end
     def test
         @tokens.each{ |token|

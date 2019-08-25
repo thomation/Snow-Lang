@@ -5,7 +5,7 @@ require_relative 'ExprParser'
 require_relative '../ASTree/BinaryExpr'
 require_relative '../ASTree/Operator'
 
-#expr -> factor {OP factor}
+#expr = factor, {OP, factor};
 
 class ExprParser < Parser
     @@expr_setting = {
@@ -24,33 +24,33 @@ class ExprParser < Parser
         "=" => {:prio => 8,},
     }
     @@stop_token = [SepToken.right, SepToken.open, SepToken.mid]
-    def parse(lexer)
-        all_index = find_binary_ops(lexer)
+    def parse(lexer, right_boundary)
+        all_index = find_binary_ops(lexer, right_boundary)
         if all_index.length <= 0 
-            return FactorParser.new.parse(lexer)
+            return FactorParser.new.parse(lexer, right_boundary)
         end
-        return parse_binary(all_index, lexer)
+        return parse_binary(all_index, lexer, right_boundary)
     end
-    def find_binary_ops(lexer)
+    def find_binary_ops(lexer, right_boundary)
         i = 1
         ret = []
         line_no = lexer.peek(0).line_no
-        while (token = lexer.peek(i)) != nil and token.line_no == line_no and !@@stop_token.include? token.text do
+        while (token = lexer.peek(i)) != nil and token.line_no == line_no and !@@stop_token.include? token.text and lexer.current_index + i < right_boundary do
             if token.is_a? OpToken
-                ret << i
+                ret << lexer.current_index + i
             end
             i += 1
         end
         return ret
     end
-    def parse_binary(all_index, lexer)
+    def parse_binary(all_index, lexer, right_boundary)
         factors = []
         ops = []
         all_index.each do |index|
-            factors << FactorParser.new.parse(lexer)
+            factors << FactorParser.new.parse(lexer, index)
             ops << Operator.new(lexer.first!)
         end
-        factors << FactorParser.new.parse(lexer)
+        factors << FactorParser.new.parse(lexer, right_boundary)
         return create_binary_tree(ops, factors, 0, ops.length)
     end
     def create_binary_tree(ops, factors, head, tail)

@@ -16,7 +16,7 @@ class Interpreter
         if option[:parse]
             puts "parser" if option[:debug]
             while(l.peek(0)) do
-                ast = @parser.parse(l)
+                ast = @parser.parse(l, l.length)
                 ast.test(0, "root") if option[:debug]
                 puts "value: #{ast.eval(@env)}" if option[:eval]
             end

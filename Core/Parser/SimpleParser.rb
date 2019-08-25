@@ -1,9 +1,9 @@
 require_relative 'Parser'
 require_relative 'ExprParser'
 
-#simple -> expr
+#simple = expr;
 class SimpleParser < Parser
-    def parse(lexer)
-        return ExprParser.new.parse(lexer)
+    def parse(lexer, right_boundary)
+        return ExprParser.new.parse(lexer, right_boundary)
     end
 end
