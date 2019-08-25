@@ -11,6 +11,6 @@ file_path = File.dirname(__FILE__) + "/" + ARGV[0]
 option = {
     debug: true,
     parse: true,
-    eval: false
+    eval: true,
 }
 Interpreter.new(Natives.new.env(Environment.new(nil))).run(file_path, option)

@@ -1,7 +1,7 @@
 require_relative 'ASTBranch'
 
 class AccessArrayMemberStatement < ASTBranch
-    def object
+    def name
         child(0)
     end
     def access_key
@@ -9,7 +9,7 @@ class AccessArrayMemberStatement < ASTBranch
     end
     def test(level, tag)
         debug_log(level, tag, "AccessArrayMemberStatement")
-        object.test(level + 1, "Object")
+        name.test(level + 1, "name")
         access_key.test(level + 1, "access_key")
     end
 end

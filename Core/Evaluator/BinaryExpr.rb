@@ -15,6 +15,9 @@ class BinaryExpr
             o.write(left.member.name, rvalue)
             return rvalue
         end
+        if left.is_a? AccessArrayMemberStatement
+            #TODO: after fix problem that a[1] cannot be left value
+        end
         raise "The left part is not a id but #{left.class}"
     end
     def compute_op(lvalue, op, rvalue)
