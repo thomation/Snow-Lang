@@ -16,7 +16,7 @@ STRING: /^\".*\"$/
 
 ### Expression
 
-primary = "(", expr, ")" | NUMBER | IDENTIFIER | STRING | call | closure | access_class_member;
+primary = "(", expr, ")" | NUMBER | IDENTIFIER | STRING | call | closure | access_class_member | array | access_array_member;
 
 factor = "-", primary | primary;
 
@@ -32,7 +32,7 @@ loop = "while", expr, block;
 
 statement = simple | branch | loop;
 
-block =  "{", [statement], { EOL, [statement] }, "}";
+block =  "{", [statement], {EOL, [statement]}, "}";
 
 ### Function
 
@@ -50,11 +50,19 @@ closure = "fun", "(", [params], ")", block;
 
 defclass = "class", IDENTIFIER, ["extends", IDENTIFIER],  class_body;
 
-class_body = "{", [member], { EOL, [member] }, "}";
+class_body = "{", [member], {EOL, [member]}, "}";
 
 member = def | simple;
 
 access_class_member = IDENTIFIER, ".", IDENTIFIER, {"(", [args], ")"};
+
+### Array
+
+elements = expr, {",", expr}
+
+array = "[", elements,"]"
+
+access_array_member = IDENTIFIER, "[", expr, "]"
 
 ### Program
 
