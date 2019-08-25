@@ -3,6 +3,8 @@ require_relative 'ExprParser'
 require_relative 'CallParser'
 require_relative 'AccessClassMemberParser'
 require_relative 'ClosureParser'
+require_relative 'ArrayParser'
+require_relative "AccessArrayMemberParser"
 require_relative '../ASTree/NumberLiteral'
 require_relative '../ASTree/StringLiteral'
 require_relative '../ASTree/Name'
@@ -14,8 +16,12 @@ require_relative '../AStree/Seperator'
 class PrimaryParser < Parser
     def parse(lexer)
         token = lexer.peek(0)
-        if token.is_a? SepToken and token.text == SepToken.left
-            return parse_sep_expr(lexer)
+        if token.is_a? SepToken
+            if token.text == SepToken.left
+                return parse_sep_expr(lexer)
+            elsif token.text == "["
+                return parse_array(lexer)
+            end
         elsif token.is_a? NumToken
             return parse_num(lexer)
         elsif token.is_a? IdToken
@@ -48,6 +54,9 @@ class PrimaryParser < Parser
         right = lexer.first!
         return PrimaryExpr.new([Seperator.new(left), expr, Seperator.new(right)])
     end
+    def parse_array(lexer)
+        return ArrayParser.new.parse(lexer)
+    end
     def parse_num(lexer)
         return NumberLiteral.new(lexer.first!)
     end
@@ -55,6 +64,7 @@ class PrimaryParser < Parser
         token = lexer.peek(1)
         return CallParser.new.parse(lexer) if token and token.is_a? SepToken and token.text == SepToken.left
         return AccessClassMemberParser.new.parse(lexer) if token and token.is_a? AccessToken and token.text == "."
+        return AccessArrayMemberParser.new.parse(lexer) if token and token.is_a? SepToken and token.text == "["
         return Name.new(lexer.first!)
     end
     def parse_string(lexer)

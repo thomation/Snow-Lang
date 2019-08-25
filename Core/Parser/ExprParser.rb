@@ -23,6 +23,7 @@ class ExprParser < Parser
         "or" => {:prio => 6,},
         "=" => {:prio => 8,},
     }
+    @@stop_token = [SepToken.right, SepToken.open, SepToken.mid]
     def parse(lexer)
         all_index = find_binary_ops(lexer)
         if all_index.length <= 0 
@@ -34,7 +35,7 @@ class ExprParser < Parser
         i = 1
         ret = []
         line_no = lexer.peek(0).line_no
-        while (token = lexer.peek(i)) != nil and token.line_no == line_no and token.text != SepToken.right and token.text != SepToken.open do
+        while (token = lexer.peek(i)) != nil and token.line_no == line_no and !@@stop_token.include? token.text do
             if token.is_a? OpToken
                 ret << i
             end
