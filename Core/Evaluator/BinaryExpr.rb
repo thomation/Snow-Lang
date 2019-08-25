@@ -16,7 +16,9 @@ class BinaryExpr
             return rvalue
         end
         if left.is_a? AccessArrayMemberStatement
-            #TODO: after fix problem that a[1] cannot be left value
+            a = env.get(left.name.name)
+            a.write(left.access_key.value, rvalue)
+            return rvalue
         end
         raise "The left part is not a id but #{left.class}"
     end

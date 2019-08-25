@@ -5,7 +5,7 @@ class SnowArray
     def read(index)
         @elements[index]
     end
-    def write(member, value)
+    def write(index, value)
         @elements[index] = value
     end
 end
