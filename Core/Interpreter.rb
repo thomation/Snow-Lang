@@ -8,15 +8,18 @@ class Interpreter
         @parser = Parsers.new
         @env = env
     end
-    def run (file)
-        puts "lexer"
+    def run (file, option)
+        puts "lexer" if option[:debug]
         l = Lexer.new(file)
-        l.test
-        puts "parser"
-        while(l.peek(0)) do
-            ast = @parser.parse(l)
-            ast.test(0, "root")
-            puts "value: #{ast.eval(@env)}"
+        l.test if option[:debug]
+        
+        if option[:parse]
+            puts "parser" if option[:debug]
+            while(l.peek(0)) do
+                ast = @parser.parse(l)
+                ast.test(0, "root") if option[:debug]
+                puts "value: #{ast.eval(@env)}" if option[:eval]
+            end
         end
     end
 end
