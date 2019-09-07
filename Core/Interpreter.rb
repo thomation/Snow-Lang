@@ -19,7 +19,9 @@ class Interpreter
             ast = @parser.parse(l, l.length)
             ast.test(0, "root")
             #puts "value: #{ast.eval(@env)}"
-            puts "IL: #{ast.compile(@code)}"
+            ast.compile(@code)
+            puts "IL:"
+            @code.test
         end
     end
 end
