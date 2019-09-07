@@ -2,24 +2,24 @@ require_relative 'Parsers'
 require_relative 'Lexer'
 require_relative 'Environment'
 Dir[File.dirname(__FILE__) + '/Evaluator/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/Compiler/*.rb'].each {|file| require file }
 
 class Interpreter
-    def initialize(env)
+    def initialize(env, code)
         @parser = Parsers.new
         @env = env
+        @code = code
     end
-    def run (file, option)
-        puts "lexer" if option[:debug]
+    def run (file)
+        puts "lexer"
         l = Lexer.new(file)
-        l.test if option[:debug]
-        
-        if option[:parse]
-            puts "parser" if option[:debug]
-            while(l.peek(0)) do
-                ast = @parser.parse(l, l.length)
-                ast.test(0, "root") if option[:debug]
-                puts "value: #{ast.eval(@env)}" if option[:eval]
-            end
+        l.test
+        puts "parser"
+        while(l.peek(0)) do
+            ast = @parser.parse(l, l.length)
+            ast.test(0, "root")
+            #puts "value: #{ast.eval(@env)}"
+            puts "IL: #{ast.compile(@code)}"
         end
     end
 end

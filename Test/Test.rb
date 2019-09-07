@@ -1,6 +1,7 @@
 require_relative '../Core/Interpreter'
 require_relative '../Core/Environment'
 require_relative '../Core/Natives'
+require_relative '../Core/Code'
 
 if ARGV.length != 1
     puts "Usage: ruby Test.rb script file name"
@@ -8,9 +9,4 @@ if ARGV.length != 1
 end
 file_path = File.dirname(__FILE__) + "/" + ARGV[0]
 #puts file_path
-option = {
-    debug: true,
-    parse: true,
-    eval: true,
-}
-Interpreter.new(Natives.new.env(Environment.new(nil))).run(file_path, option)
+Interpreter.new(Natives.new.env(Environment.new(nil)), Code.new).run(file_path)
