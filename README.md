@@ -93,4 +93,8 @@ more reg1 reg2 | reg1 = reg1 > reg2 ? 1 : 0 | more r0 r1
 less reg1 reg2 | reg1 = reg1 < reg2 ? 1 : 0 | less r0 r1
 
 # Plugin
+## VSCode
 https://github.com/rubyide/vscode-ruby
+
+## Sublime
+https://packagecontrol.io/packages/Terminus
