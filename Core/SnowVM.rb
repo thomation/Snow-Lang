@@ -2,27 +2,20 @@ require_relative 'Opcode'
 class SnowVM
 	include Opcode
 
-	def initialize(heap_memory)
-		@code = Array.new
+	def initialize(code, heap_memory)
+		@code = code
 		@registers = Array.new
 		@strings = Array.new
 		@stack = Array.new
 		@heap_memory = heap_memory
 	end
 
-	def code
-        @code
-    end
-    def code=(att)
-        @code=att
-    end
-
 	def run(entry)
 		@pc = entry
 		@fp = 0
 		@sp = 0
 		@ret = -1
-		while @pc >= 0 and @pc < code.size do
+		while @pc >= 0 and @pc < @code.size do
 			main_loop
 		end
 	end

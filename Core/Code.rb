@@ -1,10 +1,10 @@
 class Code
-    def initialize(vm)
-        @vm = vm
+    def initialize
+        @code = Array.new
         @next_reg = 0
     end
     def add(value)
-        @vm.code << value
+        @code << value
     end
     def next_reg
         @next_reg
@@ -12,9 +12,12 @@ class Code
     def next_reg=(att)
         @next_reg=att
     end
+    def code
+        @code
+    end
     def test
         puts "IL Code >>>>>>>>>>>>>>>>>>>>>>"
-        puts @vm.code
+        puts @code
         puts "IL Code <<<<<<<<<<<<<<<<<<<<<<"
     end
 end

@@ -5,11 +5,11 @@ Dir[File.dirname(__FILE__) + '/Evaluator/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/Compiler/*.rb'].each {|file| require file }
 
 class Interpreter
-    def initialize(env, lexer, parser, vm)
+    def initialize(env, lexer, parser)
         @lexer = lexer
         @parser = parser
         @env = env
-        @code = Code.new(vm)
+        @code = Code.new
     end
     def run(file_path)
         puts "Token >>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -26,6 +26,8 @@ class Interpreter
             ast.compile(@code)
             @code.test
         end
-        
+    end
+    def code
+        @code.code
     end
 end

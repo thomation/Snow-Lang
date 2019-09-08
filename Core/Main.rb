@@ -10,9 +10,11 @@ class Main
 		env = Natives.new.env(Environment.new(nil))
 		lexer = Lexer.new
 		parser = Parsers.new
-		vm = SnowVM.new(nil)
-		Interpreter.new(env, lexer, parser, vm).run(file_path)
+		interpreter = Interpreter.new(env, lexer, parser)
+		interpreter.run(file_path)
+		code = interpreter.code
 		puts "Run VM"
+		vm = SnowVM.new(code, nil)
 		vm.run(0)
 		vm.test
 	end
