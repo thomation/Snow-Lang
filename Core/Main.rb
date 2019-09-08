@@ -1,13 +1,17 @@
 require_relative 'Interpreter'
 require_relative 'Environment'
 require_relative 'Natives'
-require_relative 'Code'
 require_relative 'SnowVM'
+require_relative 'Parsers'
+require_relative 'Lexer'
 
 class Main
 	def self.run(file_path)
+		env = Natives.new.env(Environment.new(nil))
+		lexer = Lexer.new
+		parser = Parsers.new
 		vm = SnowVM.new(nil)
-		Interpreter.new(Natives.new.env(Environment.new(nil)), Code.new(vm)).run(file_path)
+		Interpreter.new(env, lexer, parser, vm).run(file_path)
 		puts "Run VM"
 		vm.run(0)
 		vm.test

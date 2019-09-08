@@ -1,7 +1,7 @@
 require_relative './Token/TokenFactory'
 
 class Lexer
-    def initialize(file)
+    def analyze(file)
         @tokens = Array.new;
         lines = File.readlines(file)
         lines.each_index { |index|

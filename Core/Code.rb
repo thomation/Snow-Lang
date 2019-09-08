@@ -13,8 +13,8 @@ class Code
         @next_reg=att
     end
     def test
-        puts "Code >>>>>>>>>>>>>>>>>>>>>>"
+        puts "IL Code >>>>>>>>>>>>>>>>>>>>>>"
         puts @vm.code
-        puts "Code <<<<<<<<<<<<<<<<<<<<<<"
+        puts "IL Code <<<<<<<<<<<<<<<<<<<<<<"
     end
 end

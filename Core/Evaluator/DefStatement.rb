@@ -1,6 +1,6 @@
 require_relative '../Objects/Function'
 
-class DefStatement < ASTBranch
+class DefStatement
     def eval(env)
         f = Function.new(params, body, env)
         env.put_new(name.name, f)
