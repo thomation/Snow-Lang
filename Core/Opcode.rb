@@ -12,10 +12,12 @@ module Opcode
     LESS = "less"
 
     def encode_register(reg)
-        - reg - 1
+        "r#{reg}"
+        #- reg - 1
     end
     def decode_register(operand)
-        -1 - operand
+        #-1 - operand
+        operand[1, operand.length - 1].to_i
     end
     def encode_offset(offset)
         offset

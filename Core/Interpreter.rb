@@ -23,5 +23,6 @@ class Interpreter
             puts "IL:"
             @code.test
         end
+        
     end
 end
