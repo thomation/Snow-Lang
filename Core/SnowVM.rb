@@ -26,10 +26,10 @@ class SnowVM
 		when ICONST then
 			@registers[decode_register(@code[@pc + 2])] = @code[@pc + 1]
 			@pc += 3
-		when ADD then
-			compute_number(ADD)
-		when MUL then
-			compute_number(MUL)
+		when ADD then compute_number(ADD)
+		when SUB then compute_number(SUB)
+		when MUL then compute_number(MUL)
+		when DIV then compute_number(DIV)
 		else
             raise "Invalid operator #{op}"
         end
@@ -44,12 +44,15 @@ class SnowVM
 		v3 = 0
 		case op
 		when ADD then v3 = v1 + v2
+		when SUB then v3 = v1 - v2	
 		when MUL then v3 = v1 * v2
+		when DIV then v3 = v1 / v2
 		else
       		raise "Invalid operator #{op}"
-        end
-        @registers[left] = v3
-        
+		end
+		
+		@registers[left] = v3
+
         @pc += 3
 	end
 	def test
