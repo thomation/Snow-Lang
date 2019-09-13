@@ -22,7 +22,7 @@ class SnowVM
 	
 	def main_loop
 		op = @code[@pc]
-		puts "Handle OP:#{op}"
+		puts "Handle OP:#{op} PC == #{@pc}"
 		case op
 		when ICONST then
 			@registers[decode_register(@code[@pc + 2])] = @code[@pc + 1]
