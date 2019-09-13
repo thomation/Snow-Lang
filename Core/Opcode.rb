@@ -2,6 +2,7 @@ module Opcode
     ICONST = "iconst: v->r"
     BCONST = "bconst"
     SCONST = "sconst"
+    NEG = "neg: r -> r"
     ADD = "add: r1, r2->r1"
     SUB = "sub: r1, r2->r1"
     MUL = "mul: r1, r2->r1"

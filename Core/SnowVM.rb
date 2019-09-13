@@ -26,6 +26,11 @@ class SnowVM
 		when ICONST then
 			@registers[decode_register(@code[@pc + 2])] = @code[@pc + 1]
 			@pc += 3
+		when NEG then
+			r = decode_register(@code[@pc + 1])
+			v = @registers[r]
+			@registers[r] = -v
+			@pc += 2
 		when ADD then compute_number(ADD)
 		when SUB then compute_number(SUB)
 		when MUL then compute_number(MUL)
