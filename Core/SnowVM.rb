@@ -22,10 +22,20 @@ class SnowVM
 	
 	def main_loop
 		op = @code[@pc]
+		puts "Handle OP:#{op}"
 		case op
 		when ICONST then
 			@registers[decode_register(@code[@pc + 2])] = @code[@pc + 1]
 			@pc += 3
+		when IFZERO then
+			v = @registers[decode_register(@code[@pc + 1])]
+			if v == 0
+				@pc += @code[@pc + 2]
+			else
+				@pc += 3
+			end
+		when GOTO then
+			@pc += @code[@pc + 1]
 		when NEG then
 			r = decode_register(@code[@pc + 1])
 			v = @registers[r]

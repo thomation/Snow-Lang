@@ -9,7 +9,6 @@
             "type": "Ruby",
             "request": "launch",
             "program": "${workspaceRoot}/Test/Test.rb",
-            "args": ["exp.sn"]
         },
     ]
 }

@@ -2,6 +2,8 @@ module Opcode
     ICONST = "iconst: v->r"
     BCONST = "bconst"
     SCONST = "sconst"
+    IFZERO ="ifzero: r, pc offset -> r==0? goto pc offset"
+    GOTO = "goto: pc offset -> goto pc offset"
     NEG = "neg: r -> r"
     ADD = "add: r1, r2->r1"
     SUB = "sub: r1, r2->r1"
@@ -31,5 +33,8 @@ module Opcode
     end
     def offset?(operand)
         operand >= 0
+    end
+    def offset_placeholder
+        encode_offset(0)
     end
 end
