@@ -1,8 +1,7 @@
-require_relative '../Opcode'
+require_relative '../Instruction/ComputeInstruction'
 class NegativeExpr
-    include Opcode
     def compile(code)
         operand.compile(code)
-        NEG.encode(code)
+        NegInstruction.new.encode(code)
     end
 end

@@ -1,6 +1,5 @@
-require_relative '../Opcode'
+require_relative '../Instruction/ComputeInstruction'
 class BinaryExpr
-    include Opcode
     def compile(code)
         op = operator.value
     	if op == "="
@@ -14,12 +13,12 @@ class BinaryExpr
     end
     def get_opcode(op)
         case op
-        when "+" then return ADD
-        when "-" then return SUB
-        when "*" then return MUL
-        when "/" then return DIV
-        when ">" then return MORE
-        when "<" then return LESS
+        when "+" then return AddInstruction.new
+        when "-" then return SubInstruction.new
+        when "*" then return MulInstruction.new
+        when "/" then return DivInstruction.new
+        # when ">" then return MoreInstruction.new
+        # when "<" then return LessInstruction.new
         else
             raise "Invalid operator #{op}"
         end

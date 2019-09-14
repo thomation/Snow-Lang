@@ -1,6 +1,5 @@
-require_relative '../Opcode'
+require_relative '../Instruction/ConstInstruction'
 class Block
-    include Opcode
     def compile(code)
         if childrenAmount > 0
             init_reg = code.next_reg
@@ -11,8 +10,9 @@ class Block
                 index += 1
             end
         else
-            ICONST.set_value(0)
-            ICONST.encode(code)
+            iconst = ConstInstrucion.new
+            iconst.set_value(0)
+            iconst.encode(code)
         end
     end
 end

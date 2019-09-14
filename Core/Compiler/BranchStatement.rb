@@ -1,6 +1,5 @@
-require_relative '../Opcode'
+require_relative '../Instruction/JumpInstruction'
 class BranchStatement
-    include Opcode
     def compile(code)
         index = 0
         while index * 2 < childrenAmount do
@@ -20,13 +19,15 @@ class BranchStatement
         old_reg = code.next_reg
         branch_statement(index).compile(code)
         code.next_reg = old_reg
-        GOTO.encode(code)
-        GOTO.update_offset_with_current_pos
+        goto = GotoInstruction.new
+        goto.encode(code)
+        goto.update_offset_with_current_pos
     end
     def compile_with_condition(code, index)
         condition(index).compile(code)
-        IFZERO.encode(code)
+        ifzero = IfZeroInstruction.new
+        ifzero.encode(code)
         compile_block(code, index)
-        IFZERO.update_offset_with_current_pos
+        ifzero.update_offset_with_current_pos
     end
 end

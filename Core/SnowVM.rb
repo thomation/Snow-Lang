@@ -1,6 +1,4 @@
-require_relative 'Opcode'
 class SnowVM
-    include Opcode
 
     def initialize(code, heap_memory)
         @code = code

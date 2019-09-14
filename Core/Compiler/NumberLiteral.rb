@@ -1,10 +1,9 @@
-require_relative '../Opcode'
+require_relative '../Instruction/ConstInstruction'
 
 class NumberLiteral
-    include Opcode
-
     def compile(code)
-        ICONST.set_value(value)
-        ICONST.encode(code)
+        iconst = ConstInstruction.new
+        iconst.set_value(value)
+        iconst.encode(code)
     end
 end
