@@ -11,10 +11,8 @@ class Block
                 index += 1
             end
         else
-            code.add(ICONST)
-            code.add(0)
-            code.add(encode_register(code.next_reg))
-            code.next_reg += 1
+            ICONST.set_value(0)
+            ICONST.encode(code)
         end
     end
 end

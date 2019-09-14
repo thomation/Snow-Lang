@@ -8,10 +8,8 @@ class BinaryExpr
         else
         	left.compile(code)
             right.compile(code)
-            code.add(get_opcode(op))
-            code.add(encode_register(code.next_reg - 2))
-            code.add(encode_register(code.next_reg - 1))
-            code.next_reg -= 1
+            op_obj = get_opcode(op)
+            op_obj.encode(code)
         end
     end
     def get_opcode(op)

@@ -4,9 +4,7 @@ class NumberLiteral
     include Opcode
 
     def compile(code)
-        code.add(ICONST)
-        code.add(value)
-        code.add(encode_register(code.next_reg))
-        code.next_reg += 1
+        ICONST.set_value(value)
+        ICONST.encode(code)
     end
 end
