@@ -3,6 +3,9 @@ class JumpInstruction < Instruction
     def encode(code_seg)
         super
         @start_pos = @code_seg.position
+        @offset_pos = do_encode
+        yield self if block_given?
+        update_offset_with_current_pos
     end
     def update_offset_with_current_pos
         offset = @code_seg.position - @start_pos
@@ -16,12 +19,10 @@ class GotoInstruction < JumpInstruction
         @desc = "goto: pc offset -> goto pc offset"
     end
 
-    def encode(code_seg)
-        super
-
+    def do_encode
         @code_seg.add(self)
         @code_seg.add(offset_placeholder)
-        @offset_pos = code_seg.position - 1
+        @code_seg.position - 1
     end
    
     def decode(vm_segs, vm_regs)
@@ -41,14 +42,12 @@ class IfZeroInstruction < JumpInstruction
         @desc = "ifzero: r, pc offset -> r==0? goto pc offset"
     end
 
-    def encode(code_seg)
-        super
-
+    def do_encode
         @code_seg.add(self)
         @code_seg.next_reg -= 1
         @code_seg.add(encode_register(@code_seg.next_reg))
         @code_seg.add(offset_placeholder)
-        @offset_pos = code_seg.position - 1
+        @code_seg.position - 1
     end
 
     def decode(vm_segs, vm_regs)

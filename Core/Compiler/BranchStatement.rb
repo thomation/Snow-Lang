@@ -19,15 +19,10 @@ class BranchStatement
         old_reg = code.next_reg
         branch_statement(index).compile(code)
         code.next_reg = old_reg
-        goto = GotoInstruction.new
-        goto.encode(code)
-        goto.update_offset_with_current_pos
+        GotoInstruction.new.encode(code)
     end
     def compile_with_condition(code, index)
         condition(index).compile(code)
-        ifzero = IfZeroInstruction.new
-        ifzero.encode(code)
-        compile_block(code, index)
-        ifzero.update_offset_with_current_pos
+        IfZeroInstruction.new.encode(code){compile_block(code, index)}
     end
 end
