@@ -9,6 +9,7 @@ class Instruction
     def decode(vm_segs, vm_regs)
         @vm_segs = vm_segs
         @vm_regs = vm_regs
+        -1
     end
     def encode_register(reg)
         "r#{reg}"

@@ -2,8 +2,9 @@ require_relative '../Instruction/ComputeInstruction'
 class BinaryExpr
     def compile(code)
         op = operator.value
-    	if op == "="
-            
+        if op == "="
+            right.compile(code)
+            left.compute_assign(code)
         else
         	left.compile(code)
             right.compile(code)

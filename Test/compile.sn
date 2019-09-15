@@ -4,7 +4,8 @@ if 0
 }
 elseif 1
 {
-    5 - 9
+    a = 5 - 9
+    b = a
 }
 else
 {

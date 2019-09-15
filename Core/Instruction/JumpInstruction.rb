@@ -15,7 +15,7 @@ end
 class GotoInstruction < JumpInstruction
     def initialize
         super
-        @id = 7
+        @id = 21
         @desc = "goto: pc offset -> goto pc offset"
     end
 
@@ -38,7 +38,7 @@ end
 
 class IfZeroInstruction < JumpInstruction
     def initialize
-        @id = 6
+        @id = 22
         @desc = "ifzero: r, pc offset -> r==0? goto pc offset"
     end
 

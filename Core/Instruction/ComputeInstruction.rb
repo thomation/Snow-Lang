@@ -3,7 +3,7 @@ require_relative 'Instruction'
 class NegInstruction < Instruction
     def initialize
         super
-        @id = 12
+        @id = 32
         @desc = "neg: r -> r"
     end
     def encode(code_seg)
@@ -56,7 +56,7 @@ end
 class AddInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 13
+        @id = 33
         @desc = "add: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -66,7 +66,7 @@ end
 class SubInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 14
+        @id = 34
         @desc = "sub: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -76,7 +76,7 @@ end
 class MulInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 15
+        @id = 35
         @desc = "mul: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -86,7 +86,7 @@ end
 class DivInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 16
+        @id = 36
         @desc = "div: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -96,7 +96,7 @@ end
 class RemInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 17
+        @id = 37
         @desc = "rem: r1, r2->r1"
     end
 end
