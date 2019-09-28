@@ -18,8 +18,8 @@ class BinaryExpr
         when "-" then return SubInstruction.new
         when "*" then return MulInstruction.new
         when "/" then return DivInstruction.new
-        # when ">" then return MoreInstruction.new
-        # when "<" then return LessInstruction.new
+        when ">" then return MoreInstruction.new
+        when "<" then return LessInstruction.new
         else
             raise "Invalid operator #{op}"
         end

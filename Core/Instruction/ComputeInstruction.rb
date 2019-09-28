@@ -3,7 +3,7 @@ require_relative 'Instruction'
 class NegInstruction < Instruction
     def initialize
         super
-        @id = 32
+        @id = Opcode::NEG
         @desc = "neg: r -> r"
     end
     def encode(code_seg)
@@ -56,7 +56,7 @@ end
 class AddInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 33
+        @id = Opcode::ADD
         @desc = "add: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -66,7 +66,7 @@ end
 class SubInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 34
+        @id = Opcode::SUB
         @desc = "sub: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -76,7 +76,7 @@ end
 class MulInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 35
+        @id = Opcode::MUL
         @desc = "mul: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -86,7 +86,7 @@ end
 class DivInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 36
+        @id = Opcode::DIV
         @desc = "div: r1, r2->r1"
     end
     def compute(v1, v2)
@@ -96,7 +96,27 @@ end
 class RemInstruction < BinaryComputeInstruction
     def initialize
         super
-        @id = 37
+        @id = Opcode::REM
         @desc = "rem: r1, r2->r1"
+    end
+end
+class MoreInstruction < BinaryComputeInstruction
+    def initialize
+        super
+        @id = Opcode::MORE
+        @desc = "More: r1, r2->r1"
+    end
+    def compute(v1, v2)
+        v1 > v2 ? 1 : 0
+    end
+end
+class LessInstruction < BinaryComputeInstruction
+    def initialize
+        super
+        @id = Opcode::LESS
+        @desc = "Less: r1, r2->r1"
+    end
+    def compute(v1, v2)
+        v1 < v2 ? 1 : 0
     end
 end

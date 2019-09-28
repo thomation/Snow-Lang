@@ -5,6 +5,7 @@ module Opcode
     
     LOAD = 11
     STORE = 12
+
     GOTO = 21
     IFZERO = 22
 
@@ -14,7 +15,7 @@ module Opcode
     MUL = 35
     DIV = 36
     REM = 37
-    
+
     EQUAL = 41
     MORE = 42
     LESS = 43

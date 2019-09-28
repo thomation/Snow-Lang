@@ -1,3 +1,4 @@
+require_relative 'Opcode'
 class Instruction
     def initialize
         @id = 0

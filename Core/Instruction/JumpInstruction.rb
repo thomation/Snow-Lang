@@ -8,8 +8,11 @@ class JumpInstruction < Instruction
         update_offset_with_current_pos
     end
     def update_offset_with_current_pos
-        offset = @code_seg.position - @start_pos
-        @code_seg.set(encode_offset(offset), @offset_pos)
+        update_offset_with_pos(@code_seg.position)
+    end
+    def update_offset_with_pos(pos)
+        offset_value = pos - @start_pos
+        @code_seg.set(encode_offset(offset_value), @offset_pos)
     end
 end
 class GotoInstruction < JumpInstruction
