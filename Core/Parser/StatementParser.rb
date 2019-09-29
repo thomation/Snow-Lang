@@ -2,6 +2,7 @@ require_relative 'Parser'
 require_relative 'SimpleParser'
 require_relative 'BranchParser'
 require_relative 'LoopParser'
+require_relative 'LocalDefineParser'
 
 #statement = simple | branch | loop;
 class StatementParser < Parser
@@ -9,6 +10,8 @@ class StatementParser < Parser
         token = lexer.peek(0)
         if token.is_a? KeyToken
             case token.text
+            when "local"
+                return parse_local(lexer, right_boundary)
             when "if"
                 return parse_branch(lexer, right_boundary)
             when "while"
@@ -21,6 +24,9 @@ class StatementParser < Parser
     end
     def parse_simple(lexer, right_boundary)
         return SimpleParser.new.parse(lexer, right_boundary)
+    end
+    def parse_local(lexer, right_boundary)
+        return LocalDefineParser.new.parse(lexer, right_boundary)
     end
     def parse_branch(lexer, right_boundary)
         return BranchParser.new.parse(lexer, right_boundary)

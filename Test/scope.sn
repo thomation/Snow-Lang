@@ -1,13 +1,11 @@
 def foo(n, a)
 {
-    b = 5
-    n = n + 1
-    a = a + 2
-    x = 8
+    local c
+    local b = 5
     n
+    c = b + 100
+    print(c)
 }
 n = 5
-x = 5
 foo(n, n)
-n
-x
+n = 6

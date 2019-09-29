@@ -7,7 +7,11 @@ class BinaryExpr
     end
     def compute_assign(env, rvalue)
         if left.is_a? Name
-            env.put(left.name, rvalue)
+            if left.local?
+                env.put_new(left.name, rvalue)
+            else
+                env.put(left.name, rvalue)
+            end
             return rvalue
         end
         if left.is_a? AccessClassMemberStatement

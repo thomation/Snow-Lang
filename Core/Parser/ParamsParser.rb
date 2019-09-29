@@ -14,7 +14,7 @@ class ParamsParser < Parser
         ids = Array.new
         while token = lexer.peek(0) and token.text != SepToken.open and !lexer.over? right_boundary do
             if !token.is_a? SepToken
-                ids << Name.new(token)
+                ids << Name.new(token, true)
             end
             lexer.first!
         end

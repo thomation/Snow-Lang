@@ -63,7 +63,7 @@ class ExprParser < Parser
         if head == tail
             return factors[head]
         end
-        return BinaryExpr.new([factors[head], ops[head], factors[head + 1]])    
+        return BinaryExpr.new([factors[head], ops[head], factors[head + 1]])
     end
     def find_low_prio_op(ops, head, tail)
         last_prio = 0

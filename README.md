@@ -24,13 +24,17 @@ expr = factor, {OP, factor};
 
 ### Statement
 
+declare = "local", IDENTIFIER;
+
+define = declare, "=", expr;
+
 simple = expr;
 
 branch = "if", expr, block, {"elseif", block}, ["else", block];
 
 loop = "while", expr, block;
 
-statement = simple | branch | loop;
+statement = declare | define | simple | branch | loop;
 
 block =  "{", [statement], {EOL, [statement]}, "}";
 

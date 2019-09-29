@@ -8,6 +8,9 @@ class Environment
         return v if v != nil or @outer == nil
         return @outer.get(name)
     end
+    def get_local(name)
+        @names[name]
+    end
     def put_new(name, value)
         @names[name] = value
     end

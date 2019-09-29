@@ -1,9 +1,7 @@
 class Name
     def eval(env)
-        value = env.get(name)
-        if value == nil
-            raise "no value of #{name}"
-        end
+        value = local? ? env.get_local(name) : env.get(name)
+        raise "no value of #{name}" unless value
         return value
     end
 end

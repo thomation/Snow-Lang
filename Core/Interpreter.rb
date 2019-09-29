@@ -21,10 +21,10 @@ class Interpreter
             ast = @parser.parse(@lexer, @lexer.length)
             ast.test(0, "root")
             puts "ASTree <<<<<<<<<<<<<<<<<<<<<<<<<<"
-            #puts "Eval"
-            #puts "value: #{ast.eval(@env)}"
-            ast.compile(@code)
-            @code.test
+            puts "Eval"
+            puts "value: #{ast.eval(@env)}"
+            # ast.compile(@code)
+            # @code.test
         end
     end
     def code
