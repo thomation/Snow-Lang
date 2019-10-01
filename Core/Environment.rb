@@ -40,6 +40,13 @@ end
 class VMEnvironment < EmbededEnvironment
     def initialize(outer)
         super
-
+        @next_index = 0
+    end
+    def obtain_symbol_index(name)
+        unless get_local(name)
+            put_new(name, @next_index)
+            @next_index += 1
+        end
+        get_local(name)
     end
 end

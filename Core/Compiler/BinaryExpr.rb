@@ -4,7 +4,7 @@ class BinaryExpr
         op = operator.value
         if op == "="
             right.compile(code, env)
-            left.compute_assign(code)
+            left.compute_assign(code, env)
         else
         	left.compile(code, env)
             right.compile(code, env)
