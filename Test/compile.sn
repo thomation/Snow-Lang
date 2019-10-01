@@ -1,5 +1,11 @@
-i = 1
-while i < 3 {
-    i = i+1
+def fact(n)
+{
+    f = 1
+    while n > 0
+    {
+        f = f * n
+        n = n - 1
+    }
+    f
 }
-i
+fact(8)

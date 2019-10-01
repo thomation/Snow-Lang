@@ -11,7 +11,20 @@ class Interpreter
         @env = env
         @code = Code.new
     end
-    def run(file_path)
+    def run_with_eval(file_path)
+        run(file_path) do |ast|
+            puts "ASTree <<<<<<<<<<<<<<<<<<<<<<<<<<"
+            puts "Eval"
+            puts "value: #{ast.eval(@env)}"
+        end
+    end
+    def run_with_compile(file_path)
+        run(file_path) do |ast|
+            ast.compile(@code)
+            @code.test
+        end
+    end
+    def run(file_path, &interpret)
         puts "Token >>>>>>>>>>>>>>>>>>>>>>>>>>"
         @lexer.analyze(file_path)
         @lexer.test
@@ -20,11 +33,7 @@ class Interpreter
             puts "ASTree >>>>>>>>>>>>>>>>>>>>>>>>>>"
             ast = @parser.parse(@lexer, @lexer.length)
             ast.test(0, "root")
-            puts "ASTree <<<<<<<<<<<<<<<<<<<<<<<<<<"
-            puts "Eval"
-            puts "value: #{ast.eval(@env)}"
-            # ast.compile(@code)
-            # @code.test
+            yield ast if block_given?
         end
     end
     def code

@@ -6,18 +6,25 @@ require_relative 'Parsers'
 require_relative 'Lexer'
 
 class Main
-	def self.run(file_path)
-		env = Natives.new.env(Environment.new(nil))
-		lexer = Lexer.new
-		parser = Parsers.new
-		interpreter = Interpreter.new(env, lexer, parser)
-		interpreter.run(file_path)
-		code = interpreter.code
-		puts "Run VM"
-		vm = SnowVM.new(code, nil)
-		vm.run(0)
-		vm.test
-	end
+    def self.run_with_eval(file_path)
+        env = Natives.new.env(Environment.new(nil))
+        lexer = Lexer.new
+        parser = Parsers.new
+        interpreter = Interpreter.new(env, lexer, parser)
+        interpreter.run_with_eval(file_path)
+    end
+    def self.run_with_compile(file_path)
+        env = Natives.new.env(Environment.new(nil))
+        lexer = Lexer.new
+        parser = Parsers.new
+        interpreter = Interpreter.new(env, lexer, parser)
+        interpreter.run_with_compile(file_path)
+        code = interpreter.code
+        puts "Run VM"
+        vm = SnowVM.new(code, nil)
+        vm.run(0)
+        vm.test
+    end
 end
 if ARGV.length != 1
     puts "Usage: ruby Test.rb script file name"
