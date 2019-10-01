@@ -8,6 +8,10 @@ module Opcode
 
     GOTO = 21
     IFZERO = 22
+    CALL = 23
+    RETURN = 24
+    SAVE = 25
+    RESTORE = 26
 
     NEG = 32
     ADD = 33

@@ -14,7 +14,7 @@ class Main
         interpreter.run_with_eval(file_path)
     end
     def self.run_with_compile(file_path)
-        env = Natives.new.env(VMEnvironment.new(Hash.new))
+        env = Natives.new.env(VMEnvironment.new(nil))
         lexer = Lexer.new
         parser = Parsers.new
         interpreter = Interpreter.new(env, lexer, parser)

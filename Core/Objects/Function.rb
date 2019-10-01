@@ -15,3 +15,8 @@ class Function
         @body
     end
 end
+class VMFunction < Function
+    def initialize(params, body, env, entry)
+        super(params, body, env)
+    end
+end
