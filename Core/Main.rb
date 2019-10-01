@@ -7,14 +7,14 @@ require_relative 'Lexer'
 
 class Main
     def self.run_with_eval(file_path)
-        env = Natives.new.env(Environment.new(nil))
+        env = Natives.new.env(EmbededEnvironment.new(nil))
         lexer = Lexer.new
         parser = Parsers.new
         interpreter = Interpreter.new(env, lexer, parser)
         interpreter.run_with_eval(file_path)
     end
     def self.run_with_compile(file_path)
-        env = Natives.new.env(Environment.new(nil))
+        env = Natives.new.env(VMEnvironment.new(Hash.new))
         lexer = Lexer.new
         parser = Parsers.new
         interpreter = Interpreter.new(env, lexer, parser)

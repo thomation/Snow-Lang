@@ -1,12 +1,12 @@
 require_relative '../Instruction/ConstInstruction'
 class Block
-    def compile(code)
+    def compile(code, env)
         if childrenAmount > 0
             init_reg = code.next_reg
             index = 0
             while index < childrenAmount do
                 code.next_reg = init_reg
-                child(index).compile(code)
+                child(index).compile(code, env)
                 index += 1
             end
         else

@@ -20,7 +20,7 @@ class Interpreter
     end
     def run_with_compile(file_path)
         run(file_path) do |ast|
-            ast.compile(@code)
+            ast.compile(@code, @env)
             @code.test
         end
     end

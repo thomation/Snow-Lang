@@ -1,13 +1,13 @@
 require_relative '../Instruction/ComputeInstruction'
 class BinaryExpr
-    def compile(code)
+    def compile(code, env)
         op = operator.value
         if op == "="
-            right.compile(code)
+            right.compile(code, env)
             left.compute_assign(code)
         else
-        	left.compile(code)
-            right.compile(code)
+        	left.compile(code, env)
+            right.compile(code, env)
             op_obj = get_opcode(op)
             op_obj.encode(code)
         end
