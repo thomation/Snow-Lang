@@ -1,12 +1,12 @@
-def fact2(n)
+def fact2(m)
 {
-    local a = n
-    10
+    local c = m + 2
+    c + 100
 }
 def fact(n)
 {
-    local a = n
-    fact2(a)
+    local b = n + 1
+    fact2(b)
 }
 def main()
 {

@@ -39,15 +39,17 @@ class EmbededEnvironment < Environment
 end
 class VMEnvironment < EmbededEnvironment
     attr_reader :root
+    attr_accessor :frame_size
 
     def initialize(outer)
-        super
+        super(outer)
         @next_index = 0
         @root = -1
+        @frame_size = 0
     end
     def obtain_symbol_index(name)
         unless get_local(name)
-            put_new(name, @next_index)
+            put_new(name, @next_index + @frame_size)
             @next_index += 1
         end
         get_local(name)

@@ -6,6 +6,7 @@ class DefStatement
         entry = code.position
         env = VMEnvironment.new(out_env)
         compile_params(code, env)
+        env.frame_size = params.size + VMDefine::SAVE_AREA_SIZE
         save_context(code)
         body.compile(code, env)
         save_return_value(code)
@@ -18,7 +19,7 @@ class DefStatement
     def compile_params(code, env)
         i = 0
         while i < params.size
-            symbol = params.name(i)
+            symbol = params.name(i).name
             env.obtain_symbol_index(symbol)
             i += 1
         end
