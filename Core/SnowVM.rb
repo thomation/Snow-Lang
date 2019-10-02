@@ -9,22 +9,19 @@ class SnowVM
     end
 
     def run(entry)
-        @pc = entry
-        @fp = 0
-        @sp = 0
-        @ret = -1
-        while @pc >= 0 and @pc < @code.size do
+        @special_regs = {pc:entry, fp:0, sp:0, ret:-1}
+        while @special_regs[:pc] >= 0 and @special_regs[:pc] < @code.size do
             main_loop
         end
-        if @pc < 0
+        if @special_regs[:pc] < 0
             raise "You don't implement a decode method"
         end
     end
     
     def main_loop
-        op = @code[@pc]
-        puts "Handle OP:#{op.to_s} PC == #{@pc}"
-        @pc = op.decode({code:@code, reg:@registers, str:@strings, stack:@stack, heap:@heap_memory}, {pc:@pc, sp:@sp, fp:@fp})
+        op = @code[@special_regs[:pc]]
+        puts "Handle OP:#{op.to_s} PC == #{@special_regs[:pc]}"
+        @special_regs[:pc] = op.decode({code:@code, reg:@registers, str:@strings, stack:@stack, heap:@heap_memory}, @special_regs)
     end
 
         def test

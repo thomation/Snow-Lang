@@ -83,7 +83,7 @@ store reg offset | copy value from register to stack |store r0 (stack address)
 gmove src dest | copy value between heep and register |gmove (heap address) r1
 ifzero reg int | if reg is 0 then goto int label |ifzero r0 5
 goto int | goto int lable | goto 7
-call reg int | call function reg with parameters (int count) |call r5 3
+call int int | call function (pc = int) with parameters (int count) |call r5 3
 return | return function to address save in ret register | return
 save int | save register to stack and update fp and sp | save (stack address)
 restore int | restore register from stack and update fp and sp|restore (stack address)

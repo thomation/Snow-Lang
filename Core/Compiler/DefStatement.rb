@@ -10,7 +10,7 @@ class DefStatement
         body.compile(code, env)
         StoreInstruction.new
         RestoreInstruction.new
-        ReturnInstruction.new
+        ReturnInstruction.new.encode(code)
         f = VMFunction.new(params, body, env, entry)
         out_env.put_new(name.name, f)
         f
