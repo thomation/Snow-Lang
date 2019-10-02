@@ -14,7 +14,7 @@ class CallStatement
             store.encode(code)
             i += 1
         end
-        call = CallInstruction.new
+        call = CallInstruction.new(name.name)
         call.args_num = f.params.size
         call.entry = f.entry
         call.encode(code)

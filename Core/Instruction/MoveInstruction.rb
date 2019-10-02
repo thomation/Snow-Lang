@@ -41,8 +41,7 @@ class StoreInstruction < MoveInstruction
     def encode(code)
         super
         @code_seg.add(self)
-        @code_seg.next_reg -= 1
-        @code_seg.add(encode_register(@code_seg.next_reg))
+        @code_seg.add(encode_register(@code_seg.next_reg - 1))
         @code_seg.add(encode_offset(@offset))
     end
     def decode(vm_segs, vm_regs)
@@ -54,7 +53,9 @@ class StoreInstruction < MoveInstruction
         fp = vm_regs[:fp]
         src = code_seg[pc + 1]
         des = code_seg[pc + 2]
-        stack[fp + decode_offset(des)] = register[decode_register(src)]
+        addr = fp + decode_offset(des)
+        stack[addr] = register[decode_register(src)]
+        vm_regs[:sp] = addr if addr > vm_regs[:sp]
 
         pc + 3
     end

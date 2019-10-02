@@ -12,7 +12,7 @@ class Instruction
     def decode(vm_segs, vm_regs)
         @vm_segs = vm_segs
         @vm_regs = vm_regs
-        -1
+        VMDefine::UNDEFINED_ERROR
     end
     def encode_register(reg)
         raise "There's no more Reg for #{reg}" if reg >= VMDefine::NUM_OF_REG
