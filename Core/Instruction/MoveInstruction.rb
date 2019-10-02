@@ -1,8 +1,15 @@
 require_relative 'Instruction'
 
 class MoveInstruction < Instruction
+    def initialize
+        super
+        @value = nil
+    end
     def set_offset(offset)
         @offset = offset
+    end
+    def decode_report
+        @value.to_s
     end
 end
 class LoadInstruction < MoveInstruction
@@ -28,6 +35,7 @@ class LoadInstruction < MoveInstruction
         src = code_seg[pc + 1]
         des = code_seg[pc + 2]
         register[decode_register(des)] = stack[fp + decode_offset(src)]
+        @value = register[decode_register(des)]
 
         pc + 3
     end
@@ -55,6 +63,7 @@ class StoreInstruction < MoveInstruction
         des = code_seg[pc + 2]
         addr = fp + decode_offset(des)
         stack[addr] = register[decode_register(src)]
+        @value = stack[addr]
         vm_regs[:sp] = addr if addr > vm_regs[:sp]
 
         pc + 3

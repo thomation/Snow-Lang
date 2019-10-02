@@ -29,7 +29,7 @@ class SnowVM
         op = @code[@special_regs[:pc]]
         puts "Before OP:#{op.to_s} Regs == #{@special_regs}"
         @special_regs[:pc] = op.decode({code:@code, reg:@registers, str:@strings, stack:@stack, heap:@heap_memory}, @special_regs)
-        puts "After OP:#{op.to_s} Regs == #{@special_regs}"
+        puts "After OP:#{op.to_s} Regs == #{@special_regs}, Report: #{op.decode_report}"
     end
 
     def test

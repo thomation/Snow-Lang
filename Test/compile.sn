@@ -1,13 +1,15 @@
 def fact2(n)
 {
     local a = n
+    10
 }
 def fact(n)
 {
     local a = n
-    fact2(10)
+    fact2(a)
 }
 def main()
 {
-    fact(8)
+    local a = fact(8)
+    a
 }

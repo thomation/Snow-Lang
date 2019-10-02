@@ -41,4 +41,7 @@ class Instruction
     def to_s
         @desc
     end
+    def decode_report
+        "no special"
+    end
 end
