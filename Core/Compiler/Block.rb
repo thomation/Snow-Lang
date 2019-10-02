@@ -10,7 +10,7 @@ class Block
                 index += 1
             end
         else
-            iconst = ConstInstrucion.new
+            iconst = ConstInstruction.new
             iconst.set_value(0)
             iconst.encode(code)
         end

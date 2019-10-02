@@ -23,9 +23,24 @@ class ReturnInstruction < Instruction
     end
 end
 class CallInstruction < Instruction
+    attr_writer :args_num
+    attr_writer :entry
+
     def initialize
         super
         @desc = "Call: reg, num of args"
         @id = Opcode::CALL
+    end
+    def encode(code_seg)
+        super
+        @code_seg.add(self)
+        @code_seg.add(@entry)
+        @code_seg.add(@args_num)
+    end
+    def decode(vm_segs, vm_regs)
+        super
+        pc = @vm_regs[:pc]
+        code_seg = @vm_segs[:code]
+        code_seg[pc + 1]
     end
 end

@@ -41,7 +41,8 @@ class StoreInstruction < MoveInstruction
     def encode(code)
         super
         @code_seg.add(self)
-        @code_seg.add(encode_register(@code_seg.next_reg - 1))
+        @code_seg.next_reg -= 1
+        @code_seg.add(encode_register(@code_seg.next_reg))
         @code_seg.add(encode_offset(@offset))
     end
     def decode(vm_segs, vm_regs)
