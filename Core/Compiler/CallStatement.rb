@@ -9,7 +9,9 @@ class CallStatement
         i = 0
         while i < f.params.size do
             arg(i).compile(code, outer_env)
-            StoreInstruction.new
+            store = StoreInstruction.new
+            store.set_offset(f.get_symbol_index_of_param(i))
+            store.encode(code)
             i += 1
         end
         CallInstruction.new

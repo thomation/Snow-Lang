@@ -20,9 +20,10 @@ class Main
         interpreter = Interpreter.new(env, lexer, parser)
         interpreter.run_with_compile(file_path)
         code = interpreter.code
+        raise "There's no main function for entry" if env.root < 0
         puts "Run VM"
         vm = SnowVM.new(code, nil)
-        vm.run(0)
+        vm.run(env.root)
         vm.test
     end
 end

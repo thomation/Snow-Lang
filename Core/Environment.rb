@@ -38,9 +38,12 @@ class EmbededEnvironment < Environment
     end
 end
 class VMEnvironment < EmbededEnvironment
+    attr_reader :root
+
     def initialize(outer)
         super
         @next_index = 0
+        @root = -1
     end
     def obtain_symbol_index(name)
         unless get_local(name)
@@ -48,5 +51,9 @@ class VMEnvironment < EmbededEnvironment
             @next_index += 1
         end
         get_local(name)
+    end
+    def put_new(name, value)
+        super
+        @root = value.entry if value.is_a? VMFunction and name == "main"
     end
 end

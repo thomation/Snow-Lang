@@ -1,11 +1,9 @@
 def fact(n)
 {
-    f = 1
-    while n > 0
-    {
-        f = f * n
-        n = n - 1
-    }
-    f
+    local a = n
+    a
 }
-fact(8)
+def main()
+{
+    fact(8)
+}

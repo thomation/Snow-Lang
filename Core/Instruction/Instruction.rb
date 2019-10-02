@@ -1,4 +1,6 @@
 require_relative 'Opcode'
+require_relative '../VMDefine'
+
 class Instruction
     def initialize
         @id = 0
@@ -13,6 +15,7 @@ class Instruction
         -1
     end
     def encode_register(reg)
+        raise "There's no more Reg for #{reg}" if reg >= VMDefine::NUM_OF_REG
         "r#{reg}"
         #- reg - 1
     end
