@@ -7,6 +7,8 @@ module Opcode
     STORE = 12
     PUSH = 13
     POP = 14
+    GLOAD = 15
+    GSTORE = 16
 
     GOTO = 21
     IFZERO = 22

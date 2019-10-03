@@ -82,7 +82,8 @@ load offset reg | copy value from stack to register |load (stack address) r0
 store reg offset | copy value from register to stack |store r0 (stack address)
 push reg | push value from register to stack | push r0
 pop reg | pop value from statck to regitst | pop r0
-gmove src dest | copy value between heep and register |gmove (heap address) r1
+gload src reg | copy value from heep to register |gload (heap address) r1
+gstore reg dest | copy value from register to heap |gstore r1 (heap address)
 ifzero reg int | if reg is 0 then goto int label |ifzero r0 5
 goto int | goto int lable | goto 7
 call int int | call function (pc = int) with parameters (int count) |call r5 3

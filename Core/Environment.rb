@@ -47,6 +47,9 @@ class VMEnvironment < EmbededEnvironment
         @root = -1
         @frame_size = 0
     end
+    def global?
+        @outer == nil
+    end
     def obtain_symbol_index(name)
         unless get_local(name)
             put_new(name, @next_index + @frame_size)
