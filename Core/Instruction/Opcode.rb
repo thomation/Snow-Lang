@@ -5,6 +5,8 @@ module Opcode
     
     LOAD = 11
     STORE = 12
+    PUSH = 13
+    POP = 14
 
     GOTO = 21
     IFZERO = 22

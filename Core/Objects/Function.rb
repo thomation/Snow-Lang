@@ -22,9 +22,4 @@ class VMFunction < Function
         super(params, body, env)
         @entry = entry
     end
-    def get_symbol_index_of_param(index)
-        raise "There's no param of index #{index}" if index >= params.size
-        param = params.name(index)
-        @env.obtain_symbol_index(param.name) + @env.frame_size
-    end
 end

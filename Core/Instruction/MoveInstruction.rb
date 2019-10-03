@@ -15,7 +15,7 @@ end
 class LoadInstruction < MoveInstruction
     def initialize
         super
-        @id = 11
+        @id = Opcode::LOAD
         @desc = "load: offset -> reg"
     end
     def encode(code)
@@ -43,7 +43,7 @@ end
 class StoreInstruction < MoveInstruction
     def initialize
         super
-        @id = 12
+        @id = Opcode::STORE
         @desc = "store: reg -> offset"
     end
     def encode(code)
@@ -67,5 +67,61 @@ class StoreInstruction < MoveInstruction
         vm_regs[:sp] = addr if addr > vm_regs[:sp]
 
         pc + 3
+    end
+end
+class PushInstruction < MoveInstruction
+    def initialize
+        super
+        @id = Opcode::PUSH
+        @desc = "Push: reg"
+    end
+    def encode(code)
+        super
+        @code_seg.add(self)
+        @code_seg.add(encode_register(@code_seg.next_reg - 1))
+    end
+    def decode(vm_segs, vm_regs)
+        super
+        code_seg = vm_segs[:code]
+        register = vm_segs[:reg]
+        stack = vm_segs[:stack]
+        pc = vm_regs[:pc]
+        sp = vm_regs[:sp]
+
+        src = code_seg[pc + 1]
+        addr = sp + 1
+        stack[addr] = register[decode_register(src)]
+        @value = stack[addr]
+        vm_regs[:sp] = addr
+
+        pc + 2
+    end
+end
+class PopInstruction < MoveInstruction
+    def initialize
+        super
+        @id = Opcode::POP
+        @desc = "Pop: reg"
+    end
+    def encode(code)
+        super
+        @code_seg.add(self)
+        @code_seg.add(encode_register(@code_seg.next_reg))
+        @code_seg.next_reg += 1
+    end
+    def decode(vm_segs, vm_regs)
+        super
+        code_seg = vm_segs[:code]
+        register = vm_segs[:reg]
+        stack = vm_segs[:stack]
+        pc = vm_regs[:pc]
+        sp = vm_regs[:sp]
+
+        des = code_seg[pc + 1]
+        register[decode_register(des)] = stack[sp]
+        @value = register[decode_register(des)]
+        vm_regs[:sp] -= 1
+
+        pc + 2
     end
 end
